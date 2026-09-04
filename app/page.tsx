@@ -504,7 +504,8 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* Created Activities */}
+                {/* Leave the first grid card as an Open To-only layout preview. */}
+                {userActivity.id !== 1 && (
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="w-4 h-4 text-gray-500" />
@@ -522,6 +523,7 @@ export default function Page() {
                     ))}
                   </div>
                 </div>
+                )}
               </div>
             ))
           )
