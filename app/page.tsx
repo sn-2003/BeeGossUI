@@ -133,57 +133,6 @@ export default function Page() {
         { title: 'Hiking Trip' },
       ],
     },
-    {
-      id: 3,
-      user: {
-        name: 'KnoBee Official',
-        avatar: 'K',
-        avatarColor: '#FF6B35',
-        age: 46,
-        gender: 'Male',
-        distance: '7 m away',
-        image: null,
-      },
-      lookingFor: ['Tennis partners', 'Fitness buddies', 'Sports enthusiasts'],
-      createdActivities: [
-        { title: 'Tennis Session' },
-        { title: 'Basketball' },
-        { title: 'Gym Buddy' },
-      ],
-    },
-    {
-      id: 4,
-      user: {
-        name: 'Mh Kaif',
-        avatar: 'M',
-        avatarColor: '#795548',
-        age: 27,
-        gender: 'Male',
-        distance: '7 m away',
-        image: null,
-      },
-      lookingFor: ['Meditation partners', 'Yoga enthusiasts', 'Peace seekers'],
-      createdActivities: [
-        { title: 'Spiritual & Wellness' },
-      ],
-    },
-    {
-      id: 5,
-      user: {
-        name: 'Mohit Testid',
-        avatar: 'M',
-        avatarColor: '#7A6C6F',
-        age: 26,
-        gender: 'Male',
-        distance: '7 m away',
-        image: null,
-      },
-      lookingFor: ['Comedy lovers', 'Social butterflies', 'Laugh partners'],
-      createdActivities: [
-        { title: 'Social & Comedy' },
-        { title: 'Movie Night' },
-      ],
-    },
   ]
 
   const people = [
@@ -486,7 +435,8 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* Looking For */}
+                {/* Hide Open To on Aditya Verma's card for the comparison preview. */}
+                {userActivity.id !== 2 && (
                 <div className="mb-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Grid className="w-4 h-4 text-gray-500" />
@@ -503,6 +453,7 @@ export default function Page() {
                     ))}
                   </div>
                 </div>
+                )}
 
                 {/* Leave the first grid card as an Open To-only layout preview. */}
                 {userActivity.id !== 1 && (
