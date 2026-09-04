@@ -1,10 +1,11 @@
 'use client'
 
-import { Search, MessageCircle, MoreVertical, Users } from 'lucide-react'
+import { Search, MessageCircle, MoreVertical, Users, Grid } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
+  const [activityView, setActivityView] = useState<'feed' | 'user'>('feed')
   const activities = [
     {
       id: 1,
@@ -18,7 +19,7 @@ export default function Page() {
         gender: 'Female',
       },
       postedIn: 'Music & Entertainment',
-      message: 'Looking for concert buddies for the weekend! Anyone interested in live music and good vibes? Let\'s explore the local music scene together 🎵',
+      message: 'Looking for buddy in music & entertainment',
       otherActivities: [
         { title: 'City Exploration', category: 'Travel' },
         { title: 'Photography Walk', category: 'Arts' },
@@ -36,7 +37,7 @@ export default function Page() {
         gender: 'Male',
       },
       postedIn: 'City Exploration',
-      message: 'Planning a city walk this Saturday. Discover hidden gems, street art, and local cafes. Perfect for photography enthusiasts! 📸',
+      message: 'Looking for someone to explore city',
       otherActivities: [
         { title: 'Music Jam', category: 'Music' },
         { title: 'Food Festival', category: 'Food' },
@@ -47,12 +48,12 @@ export default function Page() {
       id: 3,
       user: {
         name: 'KnoBee Official',
-        avatar: null,
+        avatar: 'K',
         avatarColor: '#FF6B35',
         distance: '7 m away',
-        image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260902-155546_BeeGoss-HvkVCjTwpu6ufJpU7nIT15dDvCxjmM.jpg',
+        image: null,
         age: 46,
-        gender: 'Pride',
+        gender: 'Male',
       },
       postedIn: 'Sports & Fitness',
       message: 'Tennis session this Sunday! All skill levels welcome. Rackets provided, just bring your energy. Let\'s stay active together 🎾',
@@ -65,32 +66,122 @@ export default function Page() {
       id: 4,
       user: {
         name: 'Mh Kaif',
-        avatar: null,
+        avatar: 'M',
         avatarColor: '#795548',
         distance: '7 m away',
-        image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260902-155546_BeeGoss-HvkVCjTwpu6ufJpU7nIT15dDvCxjmM.jpg',
+        image: null,
         age: 27,
         gender: 'Male',
       },
       postedIn: 'Spiritual & Wellness',
-      message: 'Morning meditation and yoga session in the park. Connect with nature and find inner peace. Open to beginners 🧘‍♂️',
+      message: 'Morning meditation and yoga session in the park',
       otherActivities: [],
     },
     {
       id: 5,
       user: {
         name: 'Mohit Testid',
-        avatar: null,
+        avatar: 'M',
         avatarColor: '#7A6C6F',
         distance: '7 m away',
-        image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260902-155546_BeeGoss-HvkVCjTwpu6ufJpU7nIT15dDvCxjmM.jpg',
+        image: null,
         age: 26,
         gender: 'Male',
       },
       postedIn: 'Social & Comedy',
-      message: 'Comedy night outing! Looking for people who love to laugh. Great stand-up shows at the local club. Age group 22-30 preferred 😂',
+      message: 'Looking for people who love to laugh',
       otherActivities: [
         { title: 'Movie Night', category: 'Entertainment' },
+      ],
+    },
+  ]
+
+  const userActivities = [
+    {
+      id: 1,
+      user: {
+        name: 'Shikha Rai',
+        avatar: 'S',
+        avatarColor: '#E91E63',
+        age: 21,
+        gender: 'Female',
+        distance: '6 m away',
+        image: null,
+      },
+      lookingFor: ['Music & Entertainment', 'City Exploration'],
+      createdActivities: [
+        { title: 'Music & Entertainment' },
+        { title: 'City Exploration' },
+        { title: 'Photography Walk' },
+      ],
+    },
+    {
+      id: 2,
+      user: {
+        name: 'Aditya Verma',
+        avatar: 'A',
+        avatarColor: '#006B7F',
+        age: 26,
+        gender: 'Male',
+        distance: '7 m away',
+        image: null,
+      },
+      lookingFor: ['Photography partners', 'City explorers', 'Cafe hoppers'],
+      createdActivities: [
+        { title: 'City Exploration' },
+        { title: 'Food Festival' },
+        { title: 'Hiking Trip' },
+      ],
+    },
+    {
+      id: 3,
+      user: {
+        name: 'KnoBee Official',
+        avatar: 'K',
+        avatarColor: '#FF6B35',
+        age: 46,
+        gender: 'Male',
+        distance: '7 m away',
+        image: null,
+      },
+      lookingFor: ['Tennis partners', 'Fitness buddies', 'Sports enthusiasts'],
+      createdActivities: [
+        { title: 'Tennis Session' },
+        { title: 'Basketball' },
+        { title: 'Gym Buddy' },
+      ],
+    },
+    {
+      id: 4,
+      user: {
+        name: 'Mh Kaif',
+        avatar: 'M',
+        avatarColor: '#795548',
+        age: 27,
+        gender: 'Male',
+        distance: '7 m away',
+        image: null,
+      },
+      lookingFor: ['Meditation partners', 'Yoga enthusiasts', 'Peace seekers'],
+      createdActivities: [
+        { title: 'Spiritual & Wellness' },
+      ],
+    },
+    {
+      id: 5,
+      user: {
+        name: 'Mohit Testid',
+        avatar: 'M',
+        avatarColor: '#7A6C6F',
+        age: 26,
+        gender: 'Male',
+        distance: '7 m away',
+        image: null,
+      },
+      lookingFor: ['Comedy lovers', 'Social butterflies', 'Laugh partners'],
+      createdActivities: [
+        { title: 'Social & Comedy' },
+        { title: 'Movie Night' },
       ],
     },
   ]
@@ -193,7 +284,9 @@ export default function Page() {
         <div className="text-xl font-bold">
           <span className="font-black">findbuddy</span>
           <div className="text-xs tracking-widest font-semibold">
-            {activeTab === 'activities' ? 'DISCOVER' : 'PEOPLE'}
+            {activeTab === 'activities' 
+              ? (activityView === 'feed' ? 'DISCOVER' : 'USER ACTIVITIES') 
+              : 'PEOPLE'}
           </div>
         </div>
         <div className="flex gap-3">
@@ -238,87 +331,200 @@ export default function Page() {
         </button>
       </div>
 
+      {/* Activity View Toggle */}
+      {activeTab === 'activities' && (
+        <div className="flex items-center justify-end px-4 py-2 bg-gray-50 border-b border-gray-100">
+          <button
+            onClick={() => setActivityView('feed')}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full ${
+              activityView === 'feed' 
+                ? 'bg-gray-900 text-white' 
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            Feed View
+          </button>
+          <button
+            onClick={() => setActivityView('user')}
+            className={`ml-2 px-3 py-1.5 text-xs font-medium rounded-full ${
+              activityView === 'user' 
+                ? 'bg-gray-900 text-white' 
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            Grid View
+          </button>
+        </div>
+      )}
+
       {/* Content */}
       <div className="flex-1 overflow-y-auto pb-32">
         {activeTab === 'activities' ? (
           // Activities View
-          activities.map((activity) => (
-            <div key={activity.id} className="border-b border-gray-100 p-4">
-              {/* User Header */}
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  {/* User Avatar */}
-                  <div className="flex-shrink-0">
-                    {activity.user.image ? (
-                      <img
-                        src={activity.user.image}
-                        alt={activity.user.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                    ) : (
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold"
-                        style={{ backgroundColor: activity.user.avatarColor }}
-                      >
-                        {activity.user.avatar}
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* User Info */}
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-base font-bold text-gray-900">{activity.user.name}</h3>
-                      <span className="text-xs text-gray-500">{activity.user.distance}</span>
+          activityView === 'feed' ? (
+            // Feed View (original design)
+            activities.map((activity) => (
+              <div key={activity.id} className="border-b border-gray-100 p-4">
+                {/* User Header */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    {/* User Avatar */}
+                    <div className="flex-shrink-0">
+                      {activity.user.image ? (
+                        <img
+                          src={activity.user.image}
+                          alt={activity.user.name}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold"
+                          style={{ backgroundColor: activity.user.avatarColor }}
+                        >
+                          {activity.user.avatar}
+                        </div>
+                      )}
                     </div>
-                    <p className="text-xs text-gray-400">{activity.user.gender} · {activity.user.age} yr</p>
+                    
+                    {/* User Info */}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-gray-900">{activity.user.name}</h3>
+                        <span className="text-xs text-gray-500">{activity.user.distance}</span>
+                      </div>
+                      <p className="text-xs text-gray-400">{activity.user.gender} · {activity.user.age} yr</p>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center gap-2">
+                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
+                      Connect
+                    </button>
+                    <button className="p-2 hover:bg-gray-100 rounded-full">
+                      <MoreVertical className="w-5 h-5 text-gray-600" />
+                    </button>
                   </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex items-center gap-2">
-                  <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
-                    Connect
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded-full">
-                    <MoreVertical className="w-5 h-5 text-gray-600" />
-                  </button>
+                {/* Posted In */}
+                <div className="mb-3">
+                  <span className="text-xs text-gray-500">Posted in </span>
+                  <span className="text-xs font-semibold text-gray-900">{activity.postedIn}</span>
                 </div>
-              </div>
 
-              {/* Posted In */}
-              <div className="mb-3">
-                <span className="text-xs text-gray-500">Posted in </span>
-                <span className="text-xs font-semibold text-gray-900">{activity.postedIn}</span>
-              </div>
+                {/* Activity Message */}
+                <div className="mb-4">
+                  <p className="text-sm text-gray-800 leading-relaxed">{activity.message}</p>
+                </div>
 
-              {/* Activity Message */}
-              <div className="mb-4">
-                <p className="text-sm text-gray-800 leading-relaxed">{activity.message}</p>
+                {/* Also Interested In */}
+                {activity.otherActivities.length > 0 && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="w-4 h-4 text-gray-500" />
+                      <span className="text-xs font-semibold text-gray-700">Also interested in</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {activity.otherActivities.map((otherActivity, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-lg"
+                        >
+                          <div className="text-xs font-semibold text-gray-900">{otherActivity.title}</div>
+                          <div className="text-xs text-gray-500">{otherActivity.category}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
+            ))
+          ) : (
+            // User View (new design)
+            userActivities.map((userActivity) => (
+              <div key={userActivity.id} className="border-b border-gray-100 p-4">
+                {/* User Header */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    {/* User Avatar */}
+                    <div className="flex-shrink-0">
+                      {userActivity.user.image ? (
+                        <img
+                          src={userActivity.user.image}
+                          alt={userActivity.user.name}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold"
+                          style={{ backgroundColor: userActivity.user.avatarColor }}
+                        >
+                          {userActivity.user.avatar}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* User Info */}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-gray-900">{userActivity.user.name}</h3>
+                        <span className="text-xs text-gray-500">{userActivity.user.distance}</span>
+                      </div>
+                      <p className="text-xs text-gray-400">{userActivity.user.gender} · {userActivity.user.age} yr</p>
+                    </div>
+                  </div>
 
-              {/* Also Interested In */}
-              {activity.otherActivities.length > 0 && (
+                  {/* Action Buttons */}
+                  <div className="flex items-center gap-2">
+                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
+                      Connect
+                    </button>
+                    <button className="p-2 hover:bg-gray-100 rounded-full">
+                      <MoreVertical className="w-5 h-5 text-gray-600" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Looking For */}
+                <div className="mb-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Grid className="w-4 h-4 text-gray-500" />
+                    <span className="text-xs font-semibold text-gray-700">Open To</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {userActivity.lookingFor.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Created Activities */}
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="w-4 h-4 text-gray-500" />
-                    <span className="text-xs font-semibold text-gray-700">Also interested in</span>
+                    <span className="text-xs font-semibold text-gray-700">Created Activities</span>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {activity.otherActivities.map((otherActivity, idx) => (
+                  <div className="space-y-2">
+                    {userActivity.createdActivities.map((activity, idx) => (
                       <div
                         key={idx}
-                        className="bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-lg"
+                        className="bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-lg flex items-center justify-between"
                       >
-                        <div className="text-xs font-semibold text-gray-900">{otherActivity.title}</div>
-                        <div className="text-xs text-gray-500">{otherActivity.category}</div>
+                        <div className="text-xs font-semibold text-gray-900">{activity.title}</div>
+                        <div className="text-xs text-gray-500">{activity.time}</div>
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
-            </div>
-          ))
+              </div>
+            ))
+          )
         ) : (
           // People View
           people.map((person) => (
