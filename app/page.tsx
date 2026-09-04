@@ -467,7 +467,7 @@ export default function Page() {
                 <div className="mb-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Grid className="w-4 h-4 text-gray-500" />
-                    <span className="text-xs font-semibold text-gray-700">Open To</span>
+                    <span className="text-xs font-semibold text-gray-700">Looking buddy for</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {userActivity.lookingFor.map((item, idx) => (
@@ -487,7 +487,7 @@ export default function Page() {
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="w-4 h-4 text-gray-500" />
-                    <span className="text-xs font-semibold text-gray-700">Created Activities</span>
+                    <span className="text-xs font-semibold text-gray-700">Open to</span>
                   </div>
                   <div className="space-y-2">
                     {userActivity.createdActivities.map((activity, idx) => (
@@ -581,17 +581,17 @@ export default function Page() {
                 <span className="text-xs font-medium text-gray-400">{people.length} people</span>
               </div>
 
-              <div className="flex gap-3 overflow-x-auto px-4 pb-3 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex gap-2 overflow-x-auto px-4 pb-3 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {people.map((person) => (
                   <article
                     key={person.id}
-                    className="w-[244px] min-w-[244px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm snap-center"
+                    className="w-[210px] min-w-[210px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm snap-center"
                   >
                     {person.image ? (
-                      <img src={person.image} alt={person.name} className="h-36 w-full object-cover" />
+                      <img src={person.image} alt={person.name} className="h-28 w-full object-cover" />
                     ) : (
                       <div
-                        className="h-36 w-full flex items-center justify-center"
+                        className="h-28 w-full flex items-center justify-center"
                         style={{ backgroundColor: person.avatarColor }}
                       >
                         <span className="text-5xl font-bold text-white/90">{person.avatar}</span>
