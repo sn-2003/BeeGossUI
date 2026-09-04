@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, MessageCircle, MoreVertical, Users, Grid } from 'lucide-react'
+import { Search, MessageCircle, Share2, Users, Grid } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Page() {
@@ -147,7 +147,7 @@ export default function Page() {
       gender: 'Female',
       image: null,
       tags: ['New to Beegoss'],
-      reputationTags: ['Friendly', 'Great vibes'],
+      reputationTags: null,
     },
     {
       id: 2,
@@ -378,7 +378,7 @@ export default function Page() {
                       Connect
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-full">
-                      <MoreVertical className="w-5 h-5 text-gray-600" />
+                      <Share2 className="w-5 h-5 text-gray-600" />
                     </button>
                   </div>
                 </div>
@@ -457,7 +457,7 @@ export default function Page() {
                       Connect
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-full">
-                      <MoreVertical className="w-5 h-5 text-gray-600" />
+                      <Share2 className="w-5 h-5 text-gray-600" />
                     </button>
                   </div>
                 </div>
