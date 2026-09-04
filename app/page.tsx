@@ -140,6 +140,7 @@ export default function Page() {
     {
       id: 1,
       name: 'Priya Sharma',
+      handle: 'priya.sharma',
       avatar: 'P',
       avatarColor: '#E91E63',
       age: 24,
@@ -151,6 +152,7 @@ export default function Page() {
     {
       id: 2,
       name: 'Rahul Kumar',
+      handle: 'rahul.kumar',
       avatar: 'R',
       avatarColor: '#006B7F',
       age: 28,
@@ -162,6 +164,7 @@ export default function Page() {
     {
       id: 3,
       name: 'Anita Singh',
+      handle: 'anita.singh',
       avatar: 'A',
       avatarColor: '#9C27B0',
       age: 23,
@@ -173,6 +176,7 @@ export default function Page() {
     {
       id: 4,
       name: 'Vikram Patel',
+      handle: 'vikram.patel',
       avatar: 'V',
       avatarColor: '#FF9800',
       age: 30,
@@ -184,6 +188,7 @@ export default function Page() {
     {
       id: 5,
       name: 'Sneha Gupta',
+      handle: 'sneha.gupta',
       avatar: 'S',
       avatarColor: '#4CAF50',
       age: 25,
@@ -195,6 +200,7 @@ export default function Page() {
     {
       id: 6,
       name: 'John Doe',
+      handle: 'john.doe',
       avatar: 'J',
       avatarColor: '#2196F3',
       age: 27,
@@ -206,6 +212,7 @@ export default function Page() {
     {
       id: 7,
       name: 'Emma Wilson',
+      handle: 'emma.wilson',
       avatar: 'E',
       avatarColor: '#E91E63',
       age: 22,
@@ -217,6 +224,7 @@ export default function Page() {
     {
       id: 8,
       name: 'Mike Johnson',
+      handle: 'mike.johnson',
       avatar: 'M',
       avatarColor: '#795548',
       age: 29,
@@ -366,7 +374,7 @@ export default function Page() {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
+                    <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
                       Connect
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-full">
@@ -445,7 +453,7 @@ export default function Page() {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
+                    <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
                       Connect
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-full">
@@ -524,7 +532,8 @@ export default function Page() {
                 {/* User Info */}
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
-                  <p className="text-sm text-gray-500 mb-2">
+                  <p className="text-sm font-semibold text-orange-800 mb-2">@{person.handle}</p>
+                  <p className="hidden">
                     {person.gender} · {person.age} yr
                   </p>
 
@@ -533,7 +542,7 @@ export default function Page() {
                     {person.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-1 rounded-full"
+                        className="bg-gray-100 text-black text-xs font-medium px-2 py-1 rounded-full"
                       >
                         {tag}
                       </span>
@@ -556,7 +565,7 @@ export default function Page() {
                 </div>
 
                 {/* Action Button */}
-                <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
+                <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
                   Connect
                 </button>
               </div>
@@ -593,9 +602,8 @@ export default function Page() {
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
-                          <p className="mt-0.5 text-sm text-gray-500">{person.gender} &middot; {person.age} yr</p>
+                          <p className="mt-0.5 text-sm font-semibold text-orange-800">@{person.handle}</p>
                         </div>
-                        <span className="pt-1 text-xs font-medium text-gray-400">Nearby</span>
                       </div>
 
                       <p className="mt-3 text-sm font-medium text-gray-700">{person.tags[0]}</p>
