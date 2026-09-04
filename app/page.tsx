@@ -147,7 +147,7 @@ export default function Page() {
       gender: 'Female',
       image: null,
       tags: ['New to Beegoss'],
-      reputationTags: null,
+      reputationTags: [],
     },
     {
       id: 2,
@@ -584,44 +584,77 @@ export default function Page() {
               <div className="flex gap-2 overflow-x-auto px-4 pb-3 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {people.map((person) => (
                   <article
-                    key={person.id}
-                    className="w-[210px] min-w-[210px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm snap-center"
-                  >
-                    {person.image ? (
-                      <img src={person.image} alt={person.name} className="h-28 w-full object-cover" />
-                    ) : (
-                      <div
-                        className="h-28 w-full flex items-center justify-center"
-                        style={{ backgroundColor: person.avatarColor }}
-                      >
-                        <span className="text-5xl font-bold text-white/90">{person.avatar}</span>
-                      </div>
-                    )}
+  key={person.id}
+  className="w-[210px] min-w-[210px] h-[350px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm snap-center flex flex-col"
+>
+  {/* Photo / Avatar */}
+  <div className="relative h-52 w-full flex-shrink-0 overflow-hidden">
+    {person.image ? (
+      <img
+        src={person.image}
+        alt={person.name}
+        className="h-full w-full object-cover"
+      />
+    ) : (
+      <div
+        className="h-full w-full flex items-center justify-center"
+        style={{ backgroundColor: person.avatarColor }}
+      >
+        <span className="text-7xl font-bold text-white/90">
+          {person.avatar}
+        </span>
+      </div>
+    )}
 
-                    <div className="p-3">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
-                          <p className="mt-0.5 text-sm font-semibold text-orange-800">@{person.handle}</p>
-                        </div>
-                      </div>
+    {/* Gradient */}
+    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                      <p className="mt-3 text-sm font-medium text-gray-700">{person.tags[0]}</p>
+    {/* Name + Handle */}
+    <div className="absolute bottom-3 left-3 right-3">
+      <h3 className="text-base font-bold text-white leading-tight">
+        {person.name}
+      </h3>
 
-                      {person.reputationTags.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {person.reputationTags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </article>
+      <p className="mt-0.5 text-xs font-medium text-white/80">
+        @{person.handle}
+      </p>
+    </div>
+  </div>
+
+  {/* Card Content */}
+  <div className="flex flex-1 flex-col p-3">
+    {/* Interest */}
+    <div className="min-h-[42px]">
+      <p className="text-sm font-medium text-black">
+        {person.tags[0]}
+      </p>
+    </div>
+
+    {/* Reputation */}
+    <div className="min-h-[30px]">
+      {person.reputationTags &&
+        person.reputationTags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {person.reputationTags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+    </div>
+
+    {/* Connect always at bottom */}
+    <button className="mt-auto w-full rounded-full bg-black py-2 text-sm font-semibold text-white hover:bg-gray-800">
+      Connect
+    </button>
+  </div>
+</article>
+
+
                 ))}
               </div>
               <p className="px-4 text-center text-xs text-gray-400">Swipe left to see more people</p>
