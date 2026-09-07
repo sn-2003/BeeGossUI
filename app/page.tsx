@@ -1,23 +1,22 @@
 'use client'
 
-import { Search, MessageCircle, Share2, Users, Grid } from 'lucide-react'
+import { Search, MessageCircle, MoreVertical, Users, Grid } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
   const [activityView, setActivityView] = useState<'feed' | 'user'>('feed')
-  const [peopleView, setPeopleView] = useState<'list' | 'cards'>('list')
   const activities = [
     {
       id: 1,
       user: {
-        name: 'Shikha Rai',
+        name: 'S Nikhil',
         avatar: 'S',
         avatarColor: '#E91E63',
         distance: '6 m away',
-        image: null,
+        image: '/pic.jpg',
         age: 21,
-        gender: 'Female',
+        gender: 'Male',
       },
       postedIn: 'Music & Entertainment',
       message: 'Looking for buddy in music & entertainment',
@@ -341,74 +340,66 @@ export default function Page() {
             // Feed View (original design)
             activities.map((activity) => (
               <div key={activity.id} className="border-b border-gray-100 p-4">
-                {/* User Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    {/* User Avatar */}
-                    <div className="flex-shrink-0">
-                      {activity.user.image ? (
-                        <img
-                          src={activity.user.image}
-                          alt={activity.user.name}
-                          className="w-12 h-12 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div
-                          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold"
-                          style={{ backgroundColor: activity.user.avatarColor }}
-                        >
-                          {activity.user.avatar}
-                        </div>
-                      )}
+                {/* User Header with Large Avatar */}
+                <div className="flex items-start gap-4 mb-4">
+                  {/* Large Circular Avatar */}
+                  <div className="flex-shrink-0">
+                    {activity.user.image ? (
+                      <img
+                        src={activity.user.image}
+                        alt={activity.user.name}
+                        className="w-24 h-24 rounded-xl object-cover border-4 border-white shadow-lg"
+                      />
+                    ) : (
+                      <div
+                        className="w-24 h-24 rounded-xl flex items-center justify-center text-white text-3xl font-bold border-4 border-white shadow-lg"
+                        style={{ backgroundColor: activity.user.avatarColor }}
+                      >
+                        {activity.user.avatar}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* User Info - Stacked for better alignment */}
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900">{activity.user.name}</h3>
+                        <p className="text-sm text-gray-500">{activity.user.gender} · {activity.user.age} yr · {activity.user.distance}</p>
+                      </div>
+                      <button className="px-4 py-2 bg-[#000000] hover:bg-[#333333] text-white text-sm font-semibold rounded-full ml-2">
+                        Connect
+                      </button>
                     </div>
                     
-                    {/* User Info */}
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-base font-bold text-gray-900">{activity.user.name}</h3>
-                        <span className="text-xs text-gray-500">{activity.user.distance}</span>
-                      </div>
-                      <p className="text-xs text-gray-400">{activity.user.gender} · {activity.user.age} yr</p>
+                    {/* Posted In */}
+                    <div className="mt-1">
+                      <span className="text-xs text-gray-500">Posted in </span>
+                      <span className="text-xs font-semibold text-gray-900">{activity.postedIn}</span>
                     </div>
                   </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
-                      Connect
-                    </button>
-                    <button className="p-2 hover:bg-gray-100 rounded-full">
-                      <Share2 className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Posted In */}
-                <div className="mb-3">
-                  <span className="text-xs text-gray-500">Posted in </span>
-                  <span className="text-xs font-semibold text-gray-900">{activity.postedIn}</span>
                 </div>
 
                 {/* Activity Message */}
-                <div className="mb-4">
+                <div className="pl-28 -mt-6 mb-3">
                   <p className="text-sm text-gray-800 leading-relaxed">{activity.message}</p>
                 </div>
 
                 {/* Also Interested In */}
                 {activity.otherActivities.length > 0 && (
-                  <div className="mb-4">
+                  <div className="pl-28">
                     <div className="flex items-center gap-2 mb-2">
-                      <Users className="w-4 h-4 text-gray-500" />
-                      <span className="text-xs font-semibold text-gray-700">Also interested in</span>
+                      <Users className="w-4 h-4 text-black" />
+                      <span className="text-xs font-semibold text-black">Also interested in</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {activity.otherActivities.map((otherActivity, idx) => (
                         <div
                           key={idx}
-                          className="bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-lg"
+                          className="bg-teal-100 hover:bg-teal-200 transition-colors px-3 py-2 rounded-lg"
                         >
-                          <div className="text-xs font-semibold text-gray-900">{otherActivity.title}</div>
-                          <div className="text-xs text-gray-500">{otherActivity.category}</div>
+                          <div className="text-xs font-semibold text-black">{otherActivity.title}</div>
+                          <div className="text-xs text-teal-900">{otherActivity.category}</div>
                         </div>
                       ))}
                     </div>
@@ -453,11 +444,11 @@ export default function Page() {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
+                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
                       Connect
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-full">
-                      <Share2 className="w-5 h-5 text-gray-600" />
+                      <MoreVertical className="w-5 h-5 text-gray-600" />
                     </button>
                   </div>
                 </div>
