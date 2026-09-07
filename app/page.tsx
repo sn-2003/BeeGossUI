@@ -387,25 +387,43 @@ export default function Page() {
                 </div>
 
                 {/* Also Interested In */}
-                {activity.otherActivities.length > 0 && (
-                  <div className="pl-28">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Users className="w-4 h-4 text-black" />
-                      <span className="text-xs font-semibold text-black">Also interested in</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {activity.otherActivities.map((otherActivity, idx) => (
-                        <div
-                          key={idx}
-                          className="bg-teal-100 hover:bg-teal-200 transition-colors px-3 py-2 rounded-lg"
-                        >
-                          <div className="text-xs font-semibold text-black">{otherActivity.title}</div>
-                          <div className="text-xs text-teal-900">{otherActivity.category}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+{activity.otherActivities.length > 0 && (
+  <div className="pl-28">
+    <div className="flex items-center gap-2 mb-2">
+      <Users className="w-4 h-4 text-black" />
+      <span className="text-xs font-semibold text-black">
+        Also interested in
+      </span>
+    </div>
+
+    <div className="flex flex-wrap gap-2">
+      {/* Show only first 2 activities */}
+      {activity.otherActivities.slice(0, 2).map((otherActivity, idx) => (
+        <div
+          key={idx}
+          className="bg-teal-100 hover:bg-teal-200 transition-colors px-3 py-2 rounded-lg"
+        >
+          <div className="text-xs font-semibold text-black">
+            {otherActivity.title}
+          </div>
+          <div className="text-xs text-teal-900">
+            {otherActivity.category}
+          </div>
+        </div>
+      ))}
+
+      {/* Show +1, +2, etc. for remaining activities */}
+      {activity.otherActivities.length > 2 && (
+        <div className="bg-gray-100 px-3 py-2 rounded-lg flex items-center justify-center">
+          <span className="text-xs font-bold text-gray-700">
+            +{activity.otherActivities.length - 2}
+          </span>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
               </div>
             ))
           ) : (
