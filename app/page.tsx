@@ -2,6 +2,7 @@
 
 import { Search, MessageCircle, MoreVertical, Users, Grid } from 'lucide-react'
 import { useState } from 'react'
+const basePath = process.env.NODE_ENV === 'production' ? '/BeeGossUI' : ''
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
@@ -346,7 +347,7 @@ export default function Page() {
                   <div className="flex-shrink-0">
                     {activity.user.image ? (
                       <img
-                        src={activity.user.image}
+                        src={`${basePath}${activity.user.image}`}
                         alt={activity.user.name}
                         className="w-24 h-24 rounded-xl object-cover border-4 border-white shadow-lg"
                       />
@@ -418,7 +419,7 @@ export default function Page() {
                     <div className="flex-shrink-0">
                       {userActivity.user.image ? (
                         <img
-                          src={userActivity.user.image}
+                          src={`${basePath}${userActivity.user.image}`}
                           alt={userActivity.user.name}
                           className="w-12 h-12 rounded-full object-cover"
                         />
