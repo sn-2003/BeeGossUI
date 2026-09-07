@@ -307,49 +307,550 @@
     }
 
     /* ============================================
-       STATS SECTION
-       ============================================ */
-    .stats {
-      height: 308px;
-      border: 2px solid var(--line);
-      border-radius: 34px;
-      padding: 32px 14px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+   PREMIUM BEEGOSS PASS
+   ============================================ */
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      font-size: 24px;
-    }
+.pass-card {
+  min-height: 132px;
+  border: 1.5px solid #171717;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(245, 214, 121, 0.30), transparent 35%),
+    linear-gradient(135deg, #ffffff 0%, #fffdf5 55%, #fff8df 100%);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .stat-icon {
-      width: 86px;
-      height: 86px;
-      font-size: 40px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--cream);
-      border-radius: 20px;
-    }
+.pass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+}
 
-    .stat strong {
-      font-size: 48px;
-      font-weight: 900;
-      line-height: 1;
-    }
+/* Decorative gold edge */
+.pass-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  background: #f5d679;
+  border-radius: 0 4px 4px 0;
+}
 
-    .stat span {
-      font-size: 24px;
-      color: var(--muted);
-      line-height: 1.2;
-    }
+/* Decorative circle */
+.pass-card::after {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: rgba(245, 214, 121, 0.18);
+  right: -65px;
+  top: -75px;
+}
+
+/* Top row */
+.pass-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #111;
+}
+
+.pass-icon {
+  width: 27px;
+  height: 27px;
+  border-radius: 8px;
+  background: #090909;
+  color: #f5d679;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.pass-free {
+  background: #090909;
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+ /* ============================================
+   PREMIUM BEEGOSS PASS SCREEN
+   ============================================ */
+
+.pass-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f7f7f5;
+  overflow-y: auto;
+}
+
+.pass-screen.show {
+  display: block;
+}
+
+.pass-screen-inner {
+  width: 430px;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px 17px 115px;
+}
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.pass-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pass-back,
+.pass-more {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #dedede;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-back {
+  font-size: 19px;
+}
+
+.pass-more {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.pass-header-title {
+  text-align: center;
+}
+
+.pass-header-title small {
+  display: block;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.pass-header-title strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+
+/* ============================================
+   PREMIUM PASS
+   ============================================ */
+
+.premium-pass {
+  height: 265px;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(245,214,121,.38),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(245,214,121,.10),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #171717 0%,
+      #080808 58%,
+      #111111 100%
+    );
+
+  color: #fff;
+  padding: 22px;
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.20),
+    inset 0 1px rgba(255,255,255,.08);
+}
+
+.premium-pass::before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  right: -115px;
+  top: -110px;
+  border: 1px solid rgba(245,214,121,.25);
+}
+
+.premium-pass::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  right: -75px;
+  top: -70px;
+  background: rgba(245,214,121,.06);
+}
+
+.premium-pass-glow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #f5d679;
+  filter: blur(80px);
+  opacity: .18;
+  right: 30px;
+  top: 15px;
+}
+
+
+/* Top */
+
+.premium-pass-top {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #f5d679;
+  color: #090909;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.brand-name {
+  margin-left: 9px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.active-pill {
+  margin-left: auto;
+
+  background: rgba(245,214,121,.12);
+  border: 1px solid rgba(245,214,121,.5);
+  color: #f5d679;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+
+/* Center */
+
+.premium-pass-center {
+  position: absolute;
+  left: 22px;
+  bottom: 67px;
+  z-index: 2;
+}
+
+.pass-type {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 7px;
+}
+
+.premium-pass-center h1 {
+  font-size: 38px;
+  line-height: .95;
+  font-weight: 900;
+  letter-spacing: -1.8px;
+}
+
+.premium-pass-center h1 span {
+  color: #f5d679;
+}
+
+
+/* Footer */
+
+.premium-pass-footer {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 21px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  z-index: 2;
+}
+
+.premium-pass-footer span {
+  display: block;
+  color: #666;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.premium-pass-footer strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.member-id {
+  text-align: right;
+}
+
+
+/* ============================================
+   BENEFITS
+   ============================================ */
+
+.benefits-section {
+  margin-top: 29px;
+}
+
+.benefits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 13px;
+}
+
+.benefits-header span {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #999;
+}
+
+.benefits-header h2 {
+  margin-top: 3px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -.6px;
+}
+
+.benefits-count {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  background: #090909;
+  color: #f5d679;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+/* Benefit cards */
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benefit-card {
+  height: 67px;
+  border-radius: 17px;
+  background: #fff;
+  border: 1px solid #e7e7e7;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-1px);
+  border-color: #ccc;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+
+
+/* Icons */
+
+.benefit-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.benefit-icon.pvr {
+  background: #090909;
+  color: #f5d679;
+  font-size: 9px;
+}
+
+.benefit-icon.cafe {
+  background: #fff8df;
+  color: #8d6b1e;
+  font-size: 17px;
+}
+
+.benefit-icon.club {
+  background: #111;
+  color: #f5d679;
+}
+
+.benefit-icon.more {
+  background: #f2f2f2;
+  color: #111;
+  font-size: 20px;
+}
+
+
+/* Text */
+
+.benefit-info {
+  margin-left: 11px;
+  flex: 1;
+}
+
+.benefit-info strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.benefit-info span {
+  display: block;
+  margin-top: 2px;
+  font-size: 9px;
+  color: #999;
+  font-weight: 600;
+}
+
+
+/* Arrow */
+
+.benefit-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  background: #f7f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  color: #555;
+}
+
+
+/* ============================================
+   BOTTOM CTA
+   ============================================ */
+
+.pass-use-button {
+  position: fixed;
+
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 396px;
+  max-width: calc(100% - 34px);
+
+  height: 56px;
+
+  border: none;
+  border-radius: 29px;
+
+  background: #090909;
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .8px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+
+  cursor: pointer;
+}
+
+.pass-use-button span {
+  color: #f5d679;
+  margin-left: 8px;
+  font-size: 15px;
+}
+
+
 
     /* ============================================
        CONTENT SECTIONS
@@ -911,29 +1412,197 @@
       <span class="dot"></span>
     </div>
 
-    <!-- Stats Section -->
-    <section class="stats">
-      <div class="stat">
-        <div class="stat-icon">♟</div>
-        <strong>11</strong>
-        <span>Planned<br>Activities</span>
+    <!-- Premium BeeGoss Pass -->
+<section class="pass-card" onclick="openPass()">
+
+  <div class="pass-top">
+
+    <div class="pass-label">
+      <div class="pass-icon">🎟</div>
+      <span>BEEGOSS PASS</span>
+    </div>
+
+    <div class="pass-free">
+      FREE FOR YOU
+    </div>
+
+  </div>
+
+  <div class="pass-content">
+
+    <div class="pass-title">
+      Your Pass. Your Perks.
+    </div>
+
+    <div class="pass-subtitle">
+      PVR • Cafés • Clubs • 20+ premium brands
+    </div>
+
+  </div>
+
+  <div class="pass-bottom">
+
+
+
+    <button
+      class="pass-cta"
+      onclick="event.stopPropagation(); openPass()">
+      VIEW PASS →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ============================================
+     PREMIUM BEEGOSS PASS SCREEN
+     ============================================ -->
+
+<div class="pass-screen" id="passScreen">
+
+  <div class="pass-screen-inner">
+
+    <!-- Header -->
+    <header class="pass-header">
+      <button class="pass-back" onclick="closePass()">←</button>
+
+      <div class="pass-header-title">
+        <small>BEEGOSS</small>
+        <strong>Pass</strong>
       </div>
-      <div class="stat">
-        <div class="stat-icon">♟</div>
-        <strong>0</strong>
-        <span>Joined<br>Circles</span>
+
+      <button class="pass-more">•••</button>
+    </header>
+
+
+    <!-- PREMIUM DIGITAL PASS -->
+    <section class="premium-pass">
+
+      <div class="premium-pass-glow"></div>
+
+      <div class="premium-pass-top">
+        <div class="brand-mark">✦</div>
+
+        <div class="brand-name">
+          BEEGOSS
+        </div>
+
+        <div class="active-pill">
+          ACTIVE
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-icon">▣</div>
-        <strong>0</strong>
-        <span>Events<br>Attended</span>
+
+
+      <div class="premium-pass-center">
+        <span class="pass-type">MEMBERSHIP PASS</span>
+
+        <h1>
+          BeeGoss
+          <span>Pass</span>
+        </h1>
       </div>
-      <div class="stat">
-        <div class="stat-icon">▤</div>
-        <strong>11</strong>
-        <span>Chat<br>Count</span>
+
+
+      <div class="premium-pass-footer">
+
+        <div>
+          <span>VALID UNTIL</span>
+          <strong>45 DAYS</strong>
+        </div>
+
+        <div class="member-id">
+          <span>MEMBER</span>
+          <strong>BG • 06 • 2026</strong>
+        </div>
+
       </div>
+
     </section>
+
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+
+      <div class="benefits-header">
+        <div>
+          <span>MEMBER BENEFITS</span>
+          <h2>Unlock more.</h2>
+        </div>
+
+        <div class="benefits-count">
+          06
+        </div>
+      </div>
+
+
+      <div class="benefit-list">
+
+        <article class="benefit-card">
+          <div class="benefit-icon pvr">PVR</div>
+
+          <div class="benefit-info">
+            <strong>Movie Benefits</strong>
+            <span>Special member offer</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon cafe">☕</div>
+
+          <div class="benefit-info">
+            <strong>Café Benefits</strong>
+            <span>Exclusive member offer</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon club">✦</div>
+
+          <div class="benefit-info">
+            <strong>Club Benefits</strong>
+            <span>Special access</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon more">+</div>
+
+          <div class="benefit-info">
+            <strong>20+ More Brands</strong>
+            <span>Explore all benefits</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- Bottom CTA -->
+  <button class="pass-use-button" onclick="usePass()">
+    USE MY PASS
+    <span>→</span>
+  </button>
+
+</div>
+
+
+
+
 
     <!-- Invite New Users Section -->
 <section class="section">
@@ -1034,5 +1703,22 @@
       <span>My Plans</span>
     </div>
   </nav>-->
+  <script>
+  function openPass() {
+    document.getElementById("passScreen").classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePass() {
+    document.getElementById("passScreen").classList.remove("show");
+    document.body.style.overflow = "";
+  }
+
+  function usePass() {
+    alert("Your BeeGoss benefits are ready!");
+  }
+</script>
+
+
 </body>
 </html>
