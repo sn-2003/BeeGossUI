@@ -171,7 +171,7 @@ export default function Page() {
       avatarColor: '#006B7F',
       age: 28,
       gender: 'Male',
-      image: null,
+      image: './pic.jpg',
       tags: ['Interested in gym workout'],
       reputationTags: ['Motivating', 'Reliable'],
     },
@@ -185,7 +185,7 @@ export default function Page() {
       gender: 'Female',
       image: null,
       tags: ['You both viewed football activity'],
-      reputationTags: ['Caring', 'Fun to be around'],
+      reputationTags: ['Caring'],
     },
     {
       id: 4,
@@ -209,7 +209,7 @@ export default function Page() {
       gender: 'Female',
       image: null,
       tags: ['You both like hiking'],
-      reputationTags: ['Adventurous', 'Supportive'],
+      reputationTags: ['Adventurous'],
     },
     {
       id: 6,
@@ -246,6 +246,30 @@ export default function Page() {
       image: null,
       tags: ['You both viewed cooking class'],
       reputationTags: ['Funny', 'Helpful'],
+    },
+    {
+      id: 9,
+      name: 'Sarah Williams',
+      handle: 'sarah.williams',
+      avatar: 'S',
+      avatarColor: '#E91E63',
+      age: 26,
+      gender: 'Female',
+      image: null,
+      tags: ['Looking for hiking buddies'],
+      reputationTags: ['Outgoing', 'Adventurous'],
+    },
+    {
+      id: 10,
+      name: 'David Chen',
+      handle: 'david.chen',
+      avatar: 'D',
+      avatarColor: '#006B7F',
+      age: 31,
+      gender: 'Male',
+      image: null,
+      tags: ['Interested in photography'],
+      reputationTags: ['Creative', 'Patient'],
     },
   ]
 
@@ -299,7 +323,7 @@ export default function Page() {
             activeTab === 'people' 
               ? 'bg-gray-900 text-white' 
               : 'bg-gray-300 text-gray-600'
-          }`}>8</span>
+          }`}>10</span>
         </button>
       </div>
 
@@ -577,11 +601,11 @@ export default function Page() {
                     <img
                       src={person.image}
                       alt={person.name}
-                      className="w-16 h-16 rounded-full object-cover"
+                      className="w-18 h-18 rounded-xl object-cover"
                     />
                   ) : (
                     <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold"
+                      className="w-18 h-18 rounded-xl flex items-center justify-center text-white text-2xl font-bold"
                       style={{ backgroundColor: person.avatarColor }}
                     >
                       {person.avatar}
@@ -636,16 +660,16 @@ export default function Page() {
               <div className="flex items-center justify-between px-4 mb-3">
                 <div>
                   <h2 className="text-sm font-bold text-gray-900">Discover people</h2>
-                  <p className="text-xs text-gray-500">Swipe to explore nearby members</p>
+                  <p className="text-xs text-gray-500">Explore nearby members</p>
                 </div>
                 <span className="text-xs font-medium text-gray-400">{people.length} people</span>
               </div>
 
-              <div className="flex gap-2 overflow-x-auto px-4 pb-3 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="grid grid-cols-2 gap-3 px-4 pb-3">
                 {people.map((person) => (
                   <article
   key={person.id}
-  className="w-[210px] min-w-[210px] h-[350px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm snap-center flex flex-col"
+  className="w-full h-[350px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm flex flex-col"
 >
   {/* Photo / Avatar */}
   <div className="relative h-52 w-full flex-shrink-0 overflow-hidden">
@@ -714,10 +738,8 @@ export default function Page() {
   </div>
 </article>
 
-
                 ))}
               </div>
-              <p className="px-4 text-center text-xs text-gray-400">Swipe left to see more people</p>
             </section>
           )
         )}
