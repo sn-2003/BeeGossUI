@@ -7,6 +7,7 @@ const basePath = process.env.NODE_ENV === 'production' ? '/BeeGossUI' : ''
 export default function Page() {
   const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
   const [activityView, setActivityView] = useState<'feed' | 'user'>('feed')
+  const [peopleView, setPeopleView] = useState<'list' | 'cards'>('list')
   const activities = [
     {
       id: 1,
