@@ -8,6 +8,19 @@ export default function Page() {
   const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
   const [activityView, setActivityView] = useState<'feed' | 'user'>('feed')
   const [peopleView, setPeopleView] = useState<'list' | 'cards'>('list')
+  const [expandedMessages, setExpandedMessages] = useState<Set<number>>(new Set())
+
+  const toggleMessage = (id: number) => {
+    setExpandedMessages(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(id)) {
+        newSet.delete(id)
+      } else {
+        newSet.add(id)
+      }
+      return newSet
+    })
+  }
   const activities = [
     {
       id: 1,
@@ -384,7 +397,43 @@ export default function Page() {
 
                 {/* Activity Message */}
                 <div className="pl-28 -mt-6 mb-3">
-                  <p className="text-sm text-gray-800 leading-relaxed">{activity.message}</p>
+                  <p className="text-sm text-gray-800 leading-relaxed">
+                    {(() => {
+                      const isExpanded = expandedMessages.has(activity.id)
+                      const words = activity.message.split(' ')
+                      
+                      if (words.length <= 10) {
+                        return activity.message
+                      }
+                      
+                      if (isExpanded) {
+                        return (
+                          <>
+                            {activity.message}
+                            <button 
+                              onClick={() => toggleMessage(activity.id)}
+                              className="text-green-600 hover:text-green-700 font-medium ml-1"
+                            >
+                              less
+                            </button>
+                          </>
+                        )
+                      }
+                      
+                      const truncated = words.slice(0, 10).join(' ')
+                      return (
+                        <>
+                          {truncated}...
+                          <button 
+                            onClick={() => toggleMessage(activity.id)}
+                            className="text-green-600 hover:text-green-700 font-medium ml-1"
+                          >
+                            more
+                          </button>
+                        </>
+                      )
+                    })()}
+                  </p>
                 </div>
 
                 {/* Also Interested In */}
