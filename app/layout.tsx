@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'FindBuddy Activity',
-  description: 'Find nearby people to plan activities together.',
+  title: 'Sanjeev | FindBuddy Profile',
+  description: 'View Sanjeev\'s FindBuddy profile, activities, and tags.',
   generator: 'v0.app',
   icons: {
     icon: [

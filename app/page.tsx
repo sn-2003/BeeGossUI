@@ -1,773 +1,129 @@
 'use client'
 
-import { Search, MessageCircle, MoreVertical, Users, Grid } from 'lucide-react'
 import { useState } from 'react'
-const basePath = process.env.NODE_ENV === 'production' ? '/BeeGossUI' : ''
+import {
+  ArrowLeft,
+  Ban,
+  Camera,
+  ChevronDown,
+  Download,
+  MessageSquare,
+  MoreHorizontal,
+  Plus,
+  Share2,
+  Sparkles,
+} from 'lucide-react'
+
+const profileImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260924-120743_BeeGoss-AsdnNAQWmJRvuNQt54J2yPFMP0V4cG.jpg'
+
+const stats = [
+  { value: '0', label: 'SNAPS' },
+  { value: '5', label: 'ACTIVITIES' },
+  { value: '4', label: 'EVENTS' },
+  { value: '4', label: 'BUDDIES' },
+]
+
+const tabs = [
+  { label: 'Snaps', value: '0' },
+  { label: 'Activities', value: '5' },
+  { label: 'Events', value: '4' },
+]
 
 export default function Page() {
-  const [activeTab, setActiveTab] = useState<'activities' | 'people'>('activities')
-  const [activityView, setActivityView] = useState<'feed' | 'user'>('feed')
-  const [peopleView, setPeopleView] = useState<'list' | 'cards'>('list')
-  const [expandedMessages, setExpandedMessages] = useState<Set<number>>(new Set())
-
-  const toggleMessage = (id: number) => {
-    setExpandedMessages(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
-      } else {
-        newSet.add(id)
-      }
-      return newSet
-    })
-  }
-  const activities = [
-    {
-      id: 1,
-      user: {
-        name: 'S Nikhil',
-        avatar: 'S',
-        avatarColor: '#E91E63',
-        distance: '6 m away',
-        image: '/pic.jpg',
-        age: 21,
-        gender: 'Male',
-      },
-      postedIn: 'Music & Entertainment',
-      message: 'Looking for buddy in music & entertainment',
-      otherActivities: [
-        { title: 'City Exploration', category: 'Travel' },
-        { title: 'Photography Walk', category: 'Arts' },
-      ],
-    },
-    {
-      id: 2,
-      user: {
-        name: 'Aditya Verma',
-        avatar: 'A',
-        avatarColor: '#006B7F',
-        distance: '7 m away',
-        image: null,
-        age: 26,
-        gender: 'Male',
-      },
-      postedIn: 'City Exploration',
-      message: 'Looking for someone to explore city',
-      otherActivities: [
-        { title: 'Music Jam', category: 'Music' },
-        { title: 'Food Festival', category: 'Food' },
-        { title: 'Hiking Trip', category: 'Adventure' },
-      ],
-    },
-    {
-      id: 3,
-      user: {
-        name: 'KnoBee Official',
-        avatar: 'K',
-        avatarColor: '#FF6B35',
-        distance: '7 m away',
-        image: null,
-        age: 46,
-        gender: 'Male',
-      },
-      postedIn: 'Sports & Fitness',
-      message: 'Tennis session this Sunday! All skill levels welcome. Rackets provided, just bring your energy. Let\'s stay active together 🎾',
-      otherActivities: [
-        { title: 'Basketball', category: 'Sports' },
-        { title: 'Gym Buddy', category: 'Fitness' },
-      ],
-    },
-    {
-      id: 4,
-      user: {
-        name: 'Mh Kaif',
-        avatar: 'M',
-        avatarColor: '#795548',
-        distance: '7 m away',
-        image: null,
-        age: 27,
-        gender: 'Male',
-      },
-      postedIn: 'Spiritual & Wellness',
-      message: 'Morning meditation and yoga session in the park',
-      otherActivities: [],
-    },
-    {
-      id: 5,
-      user: {
-        name: 'Mohit Testid',
-        avatar: 'M',
-        avatarColor: '#7A6C6F',
-        distance: '7 m away',
-        image: null,
-        age: 26,
-        gender: 'Male',
-      },
-      postedIn: 'Social & Comedy',
-      message: 'Looking for people who love to laugh',
-      otherActivities: [
-        { title: 'Movie Night', category: 'Entertainment' },
-      ],
-    },
-  ]
-
-  const userActivities = [
-    {
-      id: 1,
-      user: {
-        name: 'Shikha Rai',
-        avatar: 'S',
-        avatarColor: '#E91E63',
-        age: 21,
-        gender: 'Female',
-        distance: '6 m away',
-        image: null,
-      },
-      lookingFor: ['Music & Entertainment', 'City Exploration'],
-      createdActivities: [
-        { title: 'Music & Entertainment' },
-        { title: 'City Exploration' },
-        { title: 'Photography Walk' },
-      ],
-    },
-    {
-      id: 2,
-      user: {
-        name: 'Aditya Verma',
-        avatar: 'A',
-        avatarColor: '#006B7F',
-        age: 26,
-        gender: 'Male',
-        distance: '7 m away',
-        image: null,
-      },
-      lookingFor: ['Photography partners', 'City explorers', 'Cafe hoppers'],
-      createdActivities: [
-        { title: 'City Exploration' },
-        { title: 'Food Festival' },
-        { title: 'Hiking Trip' },
-      ],
-    },
-  ]
-
-  const people = [
-    {
-      id: 1,
-      name: 'Priya Sharma',
-      handle: 'priya.sharma',
-      avatar: 'P',
-      avatarColor: '#E91E63',
-      age: 24,
-      gender: 'Female',
-      image: null,
-      tags: ['New to Beegoss'],
-      reputationTags: [],
-    },
-    {
-      id: 2,
-      name: 'Rahul Kumar',
-      handle: 'rahul.kumar',
-      avatar: 'R',
-      avatarColor: '#006B7F',
-      age: 28,
-      gender: 'Male',
-      image: './pic.jpg',
-      tags: ['Interested in gym workout'],
-      reputationTags: ['Motivating', 'Reliable'],
-    },
-    {
-      id: 3,
-      name: 'Anita Singh',
-      handle: 'anita.singh',
-      avatar: 'A',
-      avatarColor: '#9C27B0',
-      age: 23,
-      gender: 'Female',
-      image: null,
-      tags: ['You both viewed football activity'],
-      reputationTags: ['Caring'],
-    },
-    {
-      id: 4,
-      name: 'Vikram Patel',
-      handle: 'vikram.patel',
-      avatar: 'V',
-      avatarColor: '#FF9800',
-      age: 30,
-      gender: 'Male',
-      image: null,
-      tags: ['Looking for tennis partners', 'Music enthusiast'],
-      reputationTags: ['Organized', 'Easy-going'],
-    },
-    {
-      id: 5,
-      name: 'Sneha Gupta',
-      handle: 'sneha.gupta',
-      avatar: 'S',
-      avatarColor: '#4CAF50',
-      age: 25,
-      gender: 'Female',
-      image: null,
-      tags: ['You both like hiking'],
-      reputationTags: ['Adventurous'],
-    },
-    {
-      id: 6,
-      name: 'John Doe',
-      handle: 'john.doe',
-      avatar: 'J',
-      avatarColor: '#2196F3',
-      age: 27,
-      gender: 'Male',
-      image: null,
-      tags: ['New to Beegoss', 'Photography lover'],
-      reputationTags: ['Creative', 'Great listener'],
-    },
-    {
-      id: 7,
-      name: 'Emma Wilson',
-      handle: 'emma.wilson',
-      avatar: 'E',
-      avatarColor: '#E91E63',
-      age: 22,
-      gender: 'Female',
-      image: null,
-      tags: ['Interested in yoga sessions'],
-      reputationTags: ['Calm', 'Positive energy'],
-    },
-    {
-      id: 8,
-      name: 'Mike Johnson',
-      handle: 'mike.johnson',
-      avatar: 'M',
-      avatarColor: '#795548',
-      age: 29,
-      gender: 'Male',
-      image: null,
-      tags: ['You both viewed cooking class'],
-      reputationTags: ['Funny', 'Helpful'],
-    },
-    {
-      id: 9,
-      name: 'Sarah Williams',
-      handle: 'sarah.williams',
-      avatar: 'S',
-      avatarColor: '#E91E63',
-      age: 26,
-      gender: 'Female',
-      image: null,
-      tags: ['Looking for hiking buddies'],
-      reputationTags: ['Outgoing', 'Adventurous'],
-    },
-    {
-      id: 10,
-      name: 'David Chen',
-      handle: 'david.chen',
-      avatar: 'D',
-      avatarColor: '#006B7F',
-      age: 31,
-      gender: 'Male',
-      image: null,
-      tags: ['Interested in photography'],
-      reputationTags: ['Creative', 'Patient'],
-    },
-  ]
+  const [activeTab, setActiveTab] = useState('Snaps')
+  const [added, setAdded] = useState(false)
+  const [saidHi, setSaidHi] = useState(false)
 
   return (
-    <div className="min-h-screen bg-white flex flex-col max-w-md mx-auto relative">
-      {/* Header */}
-      <header className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-200">
-        <div className="text-xl font-bold">
-          <span className="font-black">findbuddy</span>
-          <div className="text-xs tracking-widest font-semibold">
-            {activeTab === 'activities' 
-              ? (activityView === 'feed' ? 'DISCOVER' : 'USER ACTIVITIES') 
-              : 'PEOPLE'}
-          </div>
-        </div>
-        <div className="flex gap-3">
-          <button className="p-2 hover:bg-gray-100 rounded-lg">
-            <Search className="w-6 h-6" />
-          </button>
-          <button className="p-2 hover:bg-gray-100 rounded-lg">
-            <MessageCircle className="w-6 h-6" />
-          </button>
-        </div>
-      </header>
+    <main className="min-h-screen bg-[#f8f7f5] text-[#171518]">
+      <section className="relative mx-auto max-w-[922px] overflow-hidden bg-[#f8f7f5] shadow-2xl">
+        <div className="relative h-[710px] overflow-hidden bg-[#665d58] sm:h-[760px]">
+          <img
+            src={profileImage}
+            alt="Sanjeev wearing glasses and a grey blazer"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/70" />
 
-      {/* Tabs */}
-      <div className="flex border-b border-gray-200">
-        <button 
-          onClick={() => setActiveTab('activities')}
-          className={`flex-1 px-4 py-3 font-semibold border-b-2 ${
-            activeTab === 'activities' 
-              ? 'text-gray-900 border-black' 
-              : 'text-gray-400 border-transparent'
-          }`}
-        >
-          Activities <span className={`ml-2 text-xs font-bold rounded-full px-2 py-0.5 ${
-            activeTab === 'activities' 
-              ? 'bg-gray-900 text-white' 
-              : 'bg-gray-300 text-gray-600'
-          }`}>15</span>
-        </button>
-        <button 
-          onClick={() => setActiveTab('people')}
-          className={`flex-1 px-4 py-3 font-semibold border-b-2 ${
-            activeTab === 'people' 
-              ? 'text-gray-900 border-black' 
-              : 'text-gray-400 border-transparent'
-          }`}
-        >
-          People <span className={`ml-2 text-xs font-bold rounded-full px-2 py-0.5 ${
-            activeTab === 'people' 
-              ? 'bg-gray-900 text-white' 
-              : 'bg-gray-300 text-gray-600'
-          }`}>10</span>
-        </button>
-      </div>
-
-      {/* Activity View Toggle */}
-      {activeTab === 'activities' && (
-        <div className="flex items-center justify-end px-4 py-2 bg-gray-50 border-b border-gray-100">
-          <button
-            onClick={() => setActivityView('feed')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full ${
-              activityView === 'feed' 
-                ? 'bg-gray-900 text-white' 
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            Feed View
-          </button>
-          <button
-            onClick={() => setActivityView('user')}
-            className={`ml-2 px-3 py-1.5 text-xs font-medium rounded-full ${
-              activityView === 'user' 
-                ? 'bg-gray-900 text-white' 
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            Grid View
-          </button>
-        </div>
-      )}
-
-      {/* Content */}
-      {/* People View Toggle */}
-      {activeTab === 'people' && (
-        <div className="flex items-center justify-end px-4 py-2 bg-gray-50 border-b border-gray-100">
-          <button
-            onClick={() => setPeopleView('list')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full ${peopleView === 'list' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
-          >
-            List View
-          </button>
-          <button
-            onClick={() => setPeopleView('cards')}
-            className={`ml-2 px-3 py-1.5 text-xs font-medium rounded-full ${peopleView === 'cards' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
-          >
-            Card View
-          </button>
-        </div>
-      )}
-      <div className="flex-1 overflow-y-auto pb-32">
-
-        {activeTab === 'activities' ? (
-          // Activities View
-          activityView === 'feed' ? (
-            // Feed View (original design)
-            activities.map((activity) => (
-              <div key={activity.id} className="border-b border-gray-100 p-4">
-                {/* User Header with Large Avatar */}
-                <div className="flex items-start gap-4 mb-4">
-                  {/* Large Circular Avatar */}
-                  <div className="flex-shrink-0">
-                    {activity.user.image ? (
-                      <img
-                        src={`${basePath}${activity.user.image}`}
-                        alt={activity.user.name}
-                        className="w-24 h-24 rounded-xl object-cover border-4 border-white shadow-lg"
-                      />
-                    ) : (
-                      <div
-                        className="w-24 h-24 rounded-xl flex items-center justify-center text-white text-3xl font-bold border-4 border-white shadow-lg"
-                        style={{ backgroundColor: activity.user.avatarColor }}
-                      >
-                        {activity.user.avatar}
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* User Info - Stacked for better alignment */}
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-900">{activity.user.name}</h3>
-                        <p className="text-sm text-gray-500">{activity.user.gender} · {activity.user.age} yr · {activity.user.distance}</p>
-                      </div>
-                      <button className="px-4 py-2 bg-[#000000] hover:bg-[#333333] text-white text-sm font-semibold rounded-full ml-2">
-                        Connect
-                      </button>
-                    </div>
-                    
-                    {/* Posted In */}
-                    <div className="mt-1">
-                      <span className="text-xs text-gray-500">Posted in </span>
-                      <span className="text-xs font-semibold text-gray-900">{activity.postedIn}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Activity Message */}
-                <div className="pl-28 -mt-6 mb-3">
-                  <p className="text-sm text-gray-800 leading-relaxed">
-                    {(() => {
-                      const isExpanded = expandedMessages.has(activity.id)
-                      const words = activity.message.split(' ')
-                      
-                      if (words.length <= 10) {
-                        return activity.message
-                      }
-                      
-                      if (isExpanded) {
-                        return (
-                          <>
-                            {activity.message}
-                            <button 
-                              onClick={() => toggleMessage(activity.id)}
-                              className="text-green-600 hover:text-green-700 font-medium ml-1"
-                            >
-                              less
-                            </button>
-                          </>
-                        )
-                      }
-                      
-                      const truncated = words.slice(0, 10).join(' ')
-                      return (
-                        <>
-                          {truncated}...
-                          <button 
-                            onClick={() => toggleMessage(activity.id)}
-                            className="text-green-600 hover:text-green-700 font-medium ml-1"
-                          >
-                            more
-                          </button>
-                        </>
-                      )
-                    })()}
-                  </p>
-                </div>
-
-                {/* Also Interested In */}
-{activity.otherActivities.length > 0 && (
-  <div className="pl-28">
-    <div className="flex items-center gap-2 mb-2">
-      <Users className="w-4 h-4 text-black" />
-      <span className="text-xs font-semibold text-black">
-        Also interested in
-      </span>
-    </div>
-
-    <div className="flex flex-wrap gap-2">
-      {/* Show only first 2 activities */}
-      {activity.otherActivities.slice(0, 2).map((otherActivity, idx) => (
-        <div
-          key={idx}
-          className="bg-teal-100 hover:bg-teal-200 transition-colors px-3 py-2 rounded-lg"
-        >
-          <div className="text-xs font-semibold text-black">
-            {otherActivity.title}
-          </div>
-          <div className="text-xs text-teal-900">
-            {otherActivity.category}
-          </div>
-        </div>
-      ))}
-
-      {/* Show +1, +2, etc. for remaining activities */}
-      {activity.otherActivities.length > 2 && (
-        <div className="bg-gray-100 px-3 py-2 rounded-lg flex items-center justify-center">
-          <span className="text-xs font-bold text-gray-700">
-            +{activity.otherActivities.length - 2}
-          </span>
-        </div>
-      )}
-    </div>
-  </div>
-)}
-
-              </div>
-            ))
-          ) : (
-            // User View (new design)
-            userActivities.map((userActivity) => (
-              <div key={userActivity.id} className="border-b border-gray-100 p-4">
-                {/* User Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    {/* User Avatar */}
-                    <div className="flex-shrink-0">
-                      {userActivity.user.image ? (
-                        <img
-                          src={`${basePath}${userActivity.user.image}`}
-                          alt={userActivity.user.name}
-                          className="w-12 h-12 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div
-                          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold"
-                          style={{ backgroundColor: userActivity.user.avatarColor }}
-                        >
-                          {userActivity.user.avatar}
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* User Info */}
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-base font-bold text-gray-900">{userActivity.user.name}</h3>
-                        <span className="text-xs text-gray-500">{userActivity.user.distance}</span>
-                      </div>
-                      <p className="text-xs text-gray-400">{userActivity.user.gender} · {userActivity.user.age} yr</p>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full">
-                      Connect
-                    </button>
-                    <button className="p-2 hover:bg-gray-100 rounded-full">
-                      <MoreVertical className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Hide Open To on Aditya Verma's card for the comparison preview. */}
-                {userActivity.id !== 2 && (
-                <div className="mb-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Grid className="w-4 h-4 text-gray-500" />
-                    <span className="text-xs font-semibold text-gray-700">Looking buddy for</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {userActivity.lookingFor.map((item, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                )}
-
-                {/* Leave the first grid card as an Open To-only layout preview. */}
-                {userActivity.id !== 1 && (
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Users className="w-4 h-4 text-gray-500" />
-                    <span className="text-xs font-semibold text-gray-700">Open to</span>
-                  </div>
-                  <div className="space-y-2">
-                    {userActivity.createdActivities.map((activity, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-lg flex items-center justify-between"
-                      >
-                        <div className="text-xs font-semibold text-gray-900">{activity.title}</div>
-                        <div className="text-xs text-gray-500">{activity.time}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                )}
-              </div>
-            ))
-          )
-        ) : (
-          // People View
-          peopleView === 'list' ? (
-          people.map((person) => (
-            <div key={person.id} className="border-b border-gray-100 p-4">
-              <div className="flex items-center gap-4">
-                {/* Avatar */}
-                <div className="flex-shrink-0">
-                  {person.image ? (
-                    <img
-                      src={person.image}
-                      alt={person.name}
-                      className="w-18 h-18 rounded-xl object-cover"
-                    />
-                  ) : (
-                    <div
-                      className="w-18 h-18 rounded-xl flex items-center justify-center text-white text-2xl font-bold"
-                      style={{ backgroundColor: person.avatarColor }}
-                    >
-                      {person.avatar}
-                    </div>
-                  )}
-                </div>
-
-                {/* User Info */}
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
-                  <p className="text-sm font-semibold text-orange-800 mb-2">@{person.handle}</p>
-                  <p className="hidden">
-                    {person.gender} · {person.age} yr
-                  </p>
-
-                  {/* Contextual Tags */}
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {person.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-gray-100 text-black text-xs font-medium px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Reputation Tags */}
-                  {person.reputationTags && person.reputationTags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {person.reputationTags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1"
-                        >
-                          <span className="text-green-600">#</span> {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Action Button */}
-                <button className="px-4 py-2 bg-black hover:bg-black-700 text-white text-sm font-semibold rounded-full">
-                  Connect
-                </button>
-              </div>
+          <header className="absolute inset-x-0 top-0 flex items-center justify-between px-8 pt-8 sm:px-12">
+            <button aria-label="Go back" className="glass-button h-14 w-14 sm:h-16 sm:w-16">
+              <ArrowLeft size={31} strokeWidth={2.5} />
+            </button>
+            <div className="flex items-center gap-4">
+              <button aria-label="Block profile" className="glass-button h-14 w-14 sm:h-16 sm:w-16"><Ban size={29} /></button>
+              <button aria-label="Download profile" className="glass-button h-14 w-14 sm:h-16 sm:w-16"><Download size={30} /></button>
+              <button aria-label="Share profile" className="glass-button h-14 w-14 sm:h-16 sm:w-16"><Share2 size={29} /></button>
             </div>
-          ))
-          ) : (
-            <section className="py-5">
-              <div className="flex items-center justify-between px-4 mb-3">
-                <div>
-                  <h2 className="text-sm font-bold text-gray-900">Discover people</h2>
-                  <p className="text-xs text-gray-500">Explore nearby members</p>
-                </div>
-                <span className="text-xs font-medium text-gray-400">{people.length} people</span>
+          </header>
+
+          <div className="absolute inset-x-0 bottom-12 px-12 sm:bottom-14 sm:px-14">
+            <div className="mb-3 flex items-center gap-5 text-white/65">
+              <span className="h-px flex-1 bg-white/40" />
+              <span className="font-mono text-[14px] tracking-[0.28em] sm:text-[17px]">@SANJEEV_8125</span>
+              <span className="h-px flex-1 bg-white/40" />
+            </div>
+            <h1 className="font-condensed text-[58px] font-bold leading-none text-white sm:text-[72px]">Sanjeev</h1>
+            <div className="mt-7 flex flex-wrap gap-4">
+              <span className="profile-pill">Male, 27 Years</span>
+              <span className="profile-pill">Noida, Uttar Pradesh, India</span>
+            </div>
+          </div>
+        </div>
+
+        <section className="relative z-10 -mt-8 px-9 sm:px-12">
+          <div className="stats-card grid grid-cols-4 rounded-[34px] bg-white px-4 py-8 shadow-[0_16px_30px_rgba(34,26,28,0.18)] sm:px-8 sm:py-9">
+            {stats.map((stat, index) => (
+              <div key={stat.label} className={`text-center ${index ? 'border-l border-[#e6e1e2]' : ''}`}>
+                <div className="font-condensed text-[44px] font-bold leading-none sm:text-[52px]">{stat.value}</div>
+                <div className="mt-4 font-condensed text-[15px] tracking-[0.09em] text-[#a89da0] sm:text-[19px]">{stat.label}</div>
               </div>
-
-              <div className="grid grid-cols-2 gap-3 px-4 pb-3">
-                {people.map((person) => (
-                  <article
-  key={person.id}
-  className="w-full h-[350px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm flex flex-col"
->
-  {/* Photo / Avatar */}
-  <div className="relative h-52 w-full flex-shrink-0 overflow-hidden">
-    {person.image ? (
-      <img
-        src={person.image}
-        alt={person.name}
-        className="h-full w-full object-cover"
-      />
-    ) : (
-      <div
-        className="h-full w-full flex items-center justify-center"
-        style={{ backgroundColor: person.avatarColor }}
-      >
-        <span className="text-7xl font-bold text-white/90">
-          {person.avatar}
-        </span>
-      </div>
-    )}
-
-    {/* Gradient */}
-    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-    {/* Name + Handle */}
-    <div className="absolute bottom-3 left-3 right-3">
-      <h3 className="text-base font-bold text-white leading-tight">
-        {person.name}
-      </h3>
-
-      <p className="mt-0.5 text-xs font-medium text-white/80">
-        @{person.handle}
-      </p>
-    </div>
-  </div>
-
-  {/* Card Content */}
-  <div className="flex flex-1 flex-col p-3">
-    {/* Interest */}
-    <div className="min-h-[42px]">
-      <p className="text-sm font-medium text-black">
-        {person.tags[0]}
-      </p>
-    </div>
-
-    {/* Reputation */}
-    <div className="min-h-[30px]">
-      {person.reputationTags &&
-        person.reputationTags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {person.reputationTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700"
-              >
-                #{tag}
-              </span>
             ))}
           </div>
-        )}
-    </div>
 
-    {/* Connect always at bottom */}
-    <button className="mt-auto w-full rounded-full bg-black py-2 text-sm font-semibold text-white hover:bg-gray-800">
-      Connect
-    </button>
-  </div>
-</article>
+          <div className="mt-9 grid grid-cols-2 gap-7">
+            <button onClick={() => setAdded(!added)} className={`action-button bg-black text-white ${added ? 'opacity-80' : ''}`}>
+              <Plus size={31} strokeWidth={2.5} /> {added ? 'Buddy Added' : 'Add Buddy'}
+            </button>
+            <button onClick={() => setSaidHi(!saidHi)} className={`action-button bg-[#718442] text-white ${saidHi ? 'brightness-90' : ''}`}>
+              <MessageSquare size={28} /> {saidHi ? 'Hi Sent!' : 'Say Hi!'}
+            </button>
+          </div>
 
-                ))}
+          <section className="mt-11 overflow-hidden rounded-[36px] bg-white shadow-[0_8px_12px_rgba(30,25,27,0.18)]">
+            <div className="px-10 py-10 sm:px-12">
+              <div className="flex items-center gap-3 font-condensed text-[20px] font-bold tracking-[0.12em] text-[#ab9ca1] sm:text-[24px]"><Sparkles size={22} fill="currentColor" /> ABOUT</div>
+              <p className="mt-7 font-condensed text-[22px] leading-[1.25] text-[#3e393d] sm:text-[27px]">Hey! Let&apos;s plan some fun activities together with FindBuddy</p>
+            </div>
+            <div className="border-t border-[#e9e5e6] px-10 py-9 sm:px-12">
+              <div className="flex items-center gap-3 font-condensed text-[20px] font-bold tracking-[0.12em] text-[#ab9ca1] sm:text-[24px]"><MoreHorizontal size={22} /> TAGS</div>
+              <div className="mt-7 flex flex-wrap gap-5">
+                <span className="tag-pill">#friendly (1)</span>
+                <span className="tag-pill">#great vibes (1)</span>
               </div>
-            </section>
-          )
-        )}
-      </div>
+            </div>
+          </section>
+        </section>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-200 flex items-center justify-around py-3 px-4 rounded-t-3xl shadow-lg">
-        <button className="p-2 text-gray-400 hover:text-gray-600">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-3m0 0l7-4 7 4M5 9v10a1 1 0 001 1h12a1 1 0 001-1V9m-9 11l4-4m0 0l4 4m-4-4v4" />
-          </svg>
-        </button>
-        <button className="p-2 text-gray-400 hover:text-gray-600">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12M8 7a2 2 0 100-4 2 2 0 000 4zm0 0H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2v-10a2 2 0 00-2-2h-4" />
-          </svg>
-        </button>
-        <button className="p-2 text-gray-400 hover:text-gray-600">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8a4 4 0 100-8 4 4 0 000 8zm0 2c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z" />
-          </svg>
-        </button>
-        <button className="p-2 text-gray-400 hover:text-gray-600">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </button>
-      </div>
-    </div>
+        <nav className="mt-9 border-b border-[#e3dfe0] bg-white px-8 pt-4 sm:px-12" aria-label="Profile content">
+          <div className="grid grid-cols-3">
+            {tabs.map((tab) => {
+              const selected = activeTab === tab.label
+              return (
+                <button key={tab.label} onClick={() => setActiveTab(tab.label)} className={`relative flex flex-col items-center gap-2 pb-5 font-condensed text-[20px] ${selected ? 'font-bold text-black' : 'text-[#aa9fa2]'}`}>
+                  <span>{tab.label}</span>
+                  <span className={`rounded-full px-3 py-1 text-[16px] ${selected ? 'bg-black text-white' : 'bg-[#f0ebf0] text-[#aa9fa2]'}`}>{tab.value}</span>
+                  {selected && <span className="absolute bottom-0 h-1 w-full rounded-full bg-black" />}
+                </button>
+              )
+            })}
+          </div>
+        </nav>
+
+        <div className="flex min-h-[330px] items-center justify-center bg-[#fdfcfb] pb-16 pt-14">
+          {activeTab === 'Snaps' ? <Camera size={74} strokeWidth={1.4} className="text-[#c7c2c2]" /> : <div className="font-condensed text-xl text-[#b2abad]">No {activeTab.toLowerCase()} yet</div>}
+        </div>
+      </section>
+    </main>
   )
 }
+
