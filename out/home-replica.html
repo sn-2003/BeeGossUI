@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BeeGoss Home Replica</title>
+  <style>
+    /* ============================================
+       CSS VARIABLES & RESET
+       ============================================ */
+    :root {
+      --ink: #090909;
+      --muted: #929292;
+      --line: #e6e6e6;
+      --cream: #fffdf6;
+      --cream-line: #eee5d0;
+      --gold: #f5d679;
+      --primary: #000000;
+      --secondary: #ffffff;
+      --accent: #f5d679;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f4f4f4;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    body {
+      min-width: 320px;
+    }
+
+    /* ============================================
+       LAYOUT & CONTAINER
+       ============================================ */
+    .phone {
+  width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 12px 15px 90px;
+  transform: scale(0.85);
+  transform-origin: top center;
+}
+
+
+
+    /* ============================================
+       HEADER SECTION
+       ============================================ */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .greeting h1 {
+      font-size: 48px;
+      line-height: 1;
+      margin: 7px 0 11px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .greeting p {
+      font-size: 31px;
+      line-height: 1;
+      margin: 0;
+      color: #999;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 58px;
+    }
+
+    .chat {
+      width: 58px;
+      height: 48px;
+      border: 5px solid var(--ink);
+      border-radius: 9px;
+      position: relative;
+      margin-top: 22px;
+      cursor: pointer;
+    }
+
+    .chat:after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: -5px;
+      border-width: 13px 13px 0 0;
+      border-style: solid;
+      border-color: var(--ink) transparent transparent transparent;
+    }
+
+    .dots {
+      font-size: 27px;
+      letter-spacing: 5px;
+      position: absolute;
+      top: 5px;
+      left: 12px;
+    }
+
+    .avatar {
+      width: 101px;
+      height: 101px;
+      border-radius: 26px;
+      object-fit: cover;
+      margin-top: 0;
+      border: 3px solid var(--line);
+    }
+
+    /* ============================================
+       SEARCH SECTION
+       ============================================ */
+    .search {
+      height: 110px;
+      border: 3px solid var(--ink);
+      border-radius: 30px;
+      margin-top: 41px;
+      display: flex;
+      align-items: center;
+      padding: 0 35px;
+      color: #aaa;
+      font-size: 32px;
+      white-space: nowrap;
+      background: #fff;
+    }
+
+    .search-icon {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #aaa;
+      border-radius: 50%;
+      margin-right: 26px;
+      position: relative;
+    }
+
+    .search-icon:after {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 3px;
+      background: #aaa;
+      transform: rotate(-45deg);
+      left: -9px;
+      bottom: -7px;
+    }
+
+    /* ============================================
+       CATEGORY CHIPS
+       ============================================ */
+    .chips {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 26px 0 37px;
+      scrollbar-width: none;
+    }
+
+    .chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      height: 84px;
+      padding: 0 32px;
+      border: 2px solid #e4e4e4;
+      border-radius: 50px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--ink);
+    }
+
+    .chip.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      padding: 0 35px;
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      height: 470px;
+      border: 2px solid var(--cream-line);
+      border-radius: 43px;
+      background: var(--cream);
+      position: relative;
+      padding: 76px 44px;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      line-height: 1.42;
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 29px;
+      line-height: 1.38;
+      margin: 16px 0 32px;
+      color: var(--muted);
+    }
+
+    .cta {
+      font-size: 32px;
+      padding: 16px 40px;
+      border-radius: 48px;
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .cta:hover {
+      background: #333;
+    }
+
+    .people {
+      position: absolute;
+      right: 44px;
+      top: 110px;
+    }
+
+    .person {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      position: absolute;
+    }
+
+    .p1 {
+      left: 0;
+      top: 0;
+    }
+
+    .p2 {
+      left: 70px;
+      top: 55px;
+    }
+
+    .p3 {
+      left: 35px;
+      top: 110px;
+    }
+
+    .joined {
+      position: absolute;
+      right: 20px;
+      bottom: 25px;
+      font-size: 18px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 30px;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       PAGINATION DOTS
+       ============================================ */
+    .dots-row {
+      display: flex;
+      gap: 12px;
+      padding: 20px 0 30px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      width: 30px;
+      border-radius: 5px;
+      background: var(--ink);
+    }
+
+    /* ============================================
+   PREMIUM BEEGOSS PASS
+   ============================================ */
+
+.pass-card {
+  min-height: 132px;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  border: 1.5px solid #171717;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(245, 214, 121, 0.30), transparent 35%),
+    linear-gradient(135deg, #ffffff 0%, #fffdf5 55%, #fff8df 100%);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* Decorative gold edge */
+.pass-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  background: #f5d679;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Decorative circle */
+.pass-card::after {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: rgba(245, 214, 121, 0.18);
+  right: -65px;
+  top: -75px;
+}
+
+/* Top row */
+.pass-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #111;
+}
+
+.pass-icon {
+  width: 27px;
+  height: 27px;
+  border-radius: 8px;
+  background: #090909;
+  color: #f5d679;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.pass-free {
+  background: #090909;
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+.promo-rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 2px 1px 12px;
+  margin: 0 -1px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.promo-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.pass-content {
+  position: relative;
+  z-index: 2;
+  margin: 13px 0 12px;
+}
+
+.pass-title {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+
+.pass-subtitle {
+  margin-top: 4px;
+  color: #777;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.pass-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.pass-cta,
+.profile-cta {
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 13px;
+  background: #090909;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+}
+
+.profile-card {
+  flex: 0 0 100%;
+  min-height: 132px;
+  scroll-snap-align: start;
+  border: 1.5px solid #b9dfd4;
+  border-radius: 18px;
+  padding: 16px 116px 16px 18px;
+  background: linear-gradient(135deg, #effff9 0%, #ffffff 62%, #fff7d9 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 86, 70, 0.08);
+}
+
+.profile-card::after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  right: -48px;
+  top: -64px;
+  border-radius: 50%;
+  background: rgba(245, 214, 121, 0.32);
+}
+
+.profile-top,
+.profile-copy,
+.profile-progress,
+.profile-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-top,
+.profile-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-label {
+  color: #146b5c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+}
+
+.profile-percent {
+  color: #146b5c;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.profile-avatar {
+  position: absolute;
+  top: 39px;
+  right: 17px;
+  width: 82px;
+  height: 82px;
+  padding: 4px;
+  border-radius: 50%;
+  background: conic-gradient(#146b5c 0 72%, #d9eee8 72% 100%);
+  z-index: 3;
+}
+
+.profile-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-avatar-badge {
+  position: absolute;
+  right: -5px;
+  bottom: 1px;
+  padding: 4px 7px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background: #146b5c;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.profile-copy {
+  margin: 11px 0 10px;
+}
+
+.profile-copy strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+
+.profile-copy span {
+  display: block;
+  max-width: 270px;
+  margin-top: 3px;
+  color: #66736f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-progress {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #d9eee8;
+}
+
+.profile-progress span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: #146b5c;
+}
+
+.profile-bottom {
+  margin-top: 11px;
+  gap: 8px;
+}
+
+.profile-next {
+  color: #66736f;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.profile-cta {
+  background: #146b5c;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .profile-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profile-cta {
+    width: 100%;
+    padding: 10px 12px;
+  }
+}
+
+ /* ============================================
+   PREMIUM BEEGOSS PASS SCREEN
+   ============================================ */
+
+.pass-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f7f7f5;
+  overflow-y: auto;
+}
+
+.pass-screen.show {
+  display: block;
+}
+
+.pass-screen-inner {
+  width: 430px;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px 17px 115px;
+}
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.pass-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pass-back,
+.pass-more {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #dedede;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-back {
+  font-size: 19px;
+}
+
+.pass-more {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.pass-header-title {
+  text-align: center;
+}
+
+.pass-header-title small {
+  display: block;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.pass-header-title strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+
+/* ============================================
+   PREMIUM PASS
+   ============================================ */
+
+.premium-pass {
+  height: 265px;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(245,214,121,.38),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(245,214,121,.10),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #171717 0%,
+      #080808 58%,
+      #111111 100%
+    );
+
+  color: #fff;
+  padding: 22px;
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.20),
+    inset 0 1px rgba(255,255,255,.08);
+}
+
+.premium-pass::before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  right: -115px;
+  top: -110px;
+  border: 1px solid rgba(245,214,121,.25);
+}
+
+.premium-pass::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  right: -75px;
+  top: -70px;
+  background: rgba(245,214,121,.06);
+}
+
+.premium-pass-glow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #f5d679;
+  filter: blur(80px);
+  opacity: .18;
+  right: 30px;
+  top: 15px;
+}
+
+
+/* Top */
+
+.premium-pass-top {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #f5d679;
+  color: #090909;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.brand-name {
+  margin-left: 9px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.active-pill {
+  margin-left: auto;
+
+  background: rgba(245,214,121,.12);
+  border: 1px solid rgba(245,214,121,.5);
+  color: #f5d679;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+
+/* Center */
+
+.premium-pass-center {
+  position: absolute;
+  left: 22px;
+  bottom: 67px;
+  z-index: 2;
+}
+
+.pass-type {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 7px;
+}
+
+.premium-pass-center h1 {
+  font-size: 38px;
+  line-height: .95;
+  font-weight: 900;
+  letter-spacing: -1.8px;
+}
+
+.premium-pass-center h1 span {
+  color: #f5d679;
+}
+
+
+/* Footer */
+
+.premium-pass-footer {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 21px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  z-index: 2;
+}
+
+.premium-pass-footer span {
+  display: block;
+  color: #666;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.premium-pass-footer strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.member-id {
+  text-align: right;
+}
+
+
+/* ============================================
+   BENEFITS
+   ============================================ */
+
+.benefits-section {
+  margin-top: 29px;
+}
+
+.benefits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 13px;
+}
+
+.benefits-header span {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #999;
+}
+
+.benefits-header h2 {
+  margin-top: 3px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -.6px;
+}
+
+.benefits-count {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  background: #090909;
+  color: #f5d679;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+/* Benefit cards */
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benefit-card {
+  height: 67px;
+  border-radius: 17px;
+  background: #fff;
+  border: 1px solid #e7e7e7;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-1px);
+  border-color: #ccc;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+
+
+/* Icons */
+
+.benefit-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.benefit-icon.pvr {
+  background: #090909;
+  color: #f5d679;
+  font-size: 9px;
+}
+
+.benefit-icon.cafe {
+  background: #fff8df;
+  color: #8d6b1e;
+  font-size: 17px;
+}
+
+.benefit-icon.club {
+  background: #111;
+  color: #f5d679;
+}
+
+.benefit-icon.more {
+  background: #f2f2f2;
+  color: #111;
+  font-size: 20px;
+}
+
+
+/* Text */
+
+.benefit-info {
+  margin-left: 11px;
+  flex: 1;
+}
+
+.benefit-info strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.benefit-info span {
+  display: block;
+  margin-top: 2px;
+  font-size: 9px;
+  color: #999;
+  font-weight: 600;
+}
+
+
+/* Arrow */
+
+.benefit-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  background: #f7f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  color: #555;
+}
+
+
+/* ============================================
+   BOTTOM CTA
+   ============================================ */
+
+.pass-use-button {
+  position: fixed;
+
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 396px;
+  max-width: calc(100% - 34px);
+
+  height: 56px;
+
+  border: none;
+  border-radius: 29px;
+
+  background: #090909;
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .8px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+
+  cursor: pointer;
+}
+
+.pass-use-button span {
+  color: #f5d679;
+  margin-left: 8px;
+  font-size: 15px;
+}
+
+
+
+    /* ============================================
+       CONTENT SECTIONS
+       ============================================ */
+    .section {
+      margin-top: 54px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .section-head h3 {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .view {
+      font-size: 30px;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       BUDDY CARDS
+       ============================================ */
+    .buddy-row {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .buddy-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .buddy {
+      min-width: 184px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .buddy img {
+      width: 184px;
+      height: 224px;
+      border-radius: 30px;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    .buddy strong {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .buddy em {
+      font-size: 26px;
+      color: var(--muted);
+      font-style: normal;
+      margin-bottom: 8px;
+    }
+
+    .invite {
+      font-size: 22px;
+      padding: 10px 18px;
+      border-radius: 24px;
+      background: var(--cream);
+      border: 2px solid var(--cream-line);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .invite:hover {
+      background: var(--gold);
+    }
+
+    /* ============================================
+       EVENT CARDS
+       ============================================ */
+    .event-row {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+
+    .event-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .event-card {
+      min-width: 560px;
+      height: 250px;
+      border-radius: 40px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .event-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .event-copy {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 30px;
+      color: #fff;
+    }
+
+    .event-copy strong {
+      font-size: 34px;
+      font-weight: 700;
+      display: block;
+    }
+
+    .event-copy small {
+      font-size: 24px;
+      opacity: 0.9;
+    }
+
+    /* ============================================
+       BOTTOM NAVIGATION
+       ============================================ */
+    .bottom {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 792px;
+      max-width: calc(100% - 40px);
+      height: 152px;
+      background: #fff;
+      border: 3px solid var(--ink);
+      border-radius: 72px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 10px;
+    }
+
+    .nav:hover {
+      opacity: 0.7;
+    }
+
+    .nav.active {
+      color: var(--ink);
+    }
+
+    .nav svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    .nav span {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .nav.featured {
+      width: 144px;
+      height: 144px;
+      background: var(--ink);
+      border-radius: 50%;
+      margin-top: -50px;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .nav.featured svg {
+      width: 56px;
+      height: 56px;
+      stroke: #fff;
+    }
+
+    .nav.featured span {
+      color: #fff;
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+    @media (min-width: 601px) {
+      html, body {
+        background: #f4f4f4;
+      }
+
+      .phone {
+        width: 430px;
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 14px 17px 105px;
+      }
+
+      .top {
+        margin-bottom: 10px;
+      }
+
+      .greeting h1 {
+        font-size: 25px;
+        margin: 4px 0 6px;
+        letter-spacing: -0.8px;
+      }
+
+      .greeting p {
+        font-size: 16px;
+      }
+
+      .top-actions {
+        gap: 20px;
+      }
+
+      .chat {
+        width: 31px;
+        height: 26px;
+        border-width: 3px;
+        border-radius: 6px;
+        margin-top: 11px;
+      }
+
+      .chat:after {
+        bottom: -9px;
+        left: -3px;
+        border-width: 8px 8px 0 0;
+      }
+
+      .dots {
+        font-size: 14px;
+        letter-spacing: 2px;
+        top: 2px;
+        left: 6px;
+      }
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 13px;
+      }
+
+      .search {
+        height: 55px;
+        border-width: 2px;
+        border-radius: 15px;
+        margin-top: 21px;
+        padding: 0 17px;
+        font-size: 16px;
+      }
+
+      .search-icon {
+        width: 10px;
+        height: 10px;
+        border-width: 2px;
+        margin-right: 13px;
+      }
+
+      .search-icon:after {
+        width: 7px;
+        height: 2px;
+        left: -5px;
+        bottom: -4px;
+      }
+
+      .chips {
+        gap: 9px;
+        padding: 13px 0 19px;
+      }
+
+      .chip {
+        height: 42px;
+        padding: 0 16px;
+        border-width: 1px;
+        font-size: 15px;
+      }
+
+      .chip.active {
+        padding: 0 18px;
+      }
+
+      .hero {
+        height: 235px;
+        border-radius: 22px;
+        padding: 38px 22px;
+      }
+
+      .hero h2 {
+        font-size: 21px;
+      }
+
+      .hero p {
+        font-size: 15px;
+        margin: 8px 0 16px;
+      }
+
+      .cta {
+        font-size: 16px;
+        padding: 13px 20px;
+        border-radius: 24px;
+      }
+
+      .people {
+        right: 20px;
+        top: 55px;
+      }
+
+      .person {
+        width: 67px;
+        height: 67px;
+      }
+
+      .p2 {
+        left: 48px;
+      }
+
+      .p3 {
+        top: 55px;
+      }
+
+      .joined {
+        right: 10px;
+        bottom: 12px;
+        font-size: 12px;
+        padding: 9px 15px;
+      }
+
+      .dots-row {
+        gap: 7px;
+        padding: 11px 0 17px;
+      }
+
+      .dot {
+        width: 7px;
+        height: 7px;
+      }
+
+      .dot.active {
+        width: 18px;
+      }
+
+      .stats {
+        height: 154px;
+        border-radius: 17px;
+        padding: 16px 7px;
+      }
+
+      .stat {
+        font-size: 12px;
+      }
+
+      .stat strong {
+        font-size: 24px;
+      }
+
+      .stat span {
+        font-size: 12px;
+      }
+
+      .stat-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .section {
+        margin-top: 27px;
+      }
+
+      .section-head h3 {
+        font-size: 21px;
+      }
+
+      .view {
+        font-size: 15px;
+      }
+
+      .buddy-row {
+        gap: 12px;
+      }
+
+      .buddy {
+        min-width: 92px;
+      }
+
+      .buddy img {
+        width: 92px;
+        height: 112px;
+        border-radius: 15px;
+      }
+
+      .buddy strong {
+        font-size: 16px;
+      }
+
+      .buddy em {
+        font-size: 13px;
+      }
+
+      .invite {
+        font-size: 11px;
+        padding: 6px 9px;
+      }
+
+      .event-row {
+        gap: 12px;
+      }
+
+      .event-card {
+        min-width: 280px;
+        height: 125px;
+        border-radius: 20px;
+      }
+
+      .event-copy {
+        font-size: 17px;
+      }
+
+      .event-copy strong {
+        font-size: 17px;
+      }
+
+      .event-copy small {
+        font-size: 12px;
+      }
+
+      .bottom {
+        width: 396px;
+        max-width: calc(100% - 20px);
+        height: 76px;
+        border-radius: 36px;
+        bottom: 10px;
+      }
+
+      .nav svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .nav span {
+        font-size: 11px;
+      }
+
+      .nav.featured {
+        width: 72px;
+        height: 72px;
+        margin-top: -25px;
+      }
+
+      .nav.featured svg {
+        width: 28px;
+        height: 28px;
+      }
+      .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.avatar-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+}
+
+.avatar-green {
+  background: linear-gradient(135deg, #10b981, #22c55e);
+}
+
+.avatar-orange {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+}
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <!-- Header Section -->
+    <header class="top">
+      <div class="greeting">
+        <h1>Hey, S Nikhil 👋</h1>
+        <p>What are you up to today?</p>
+      </div>
+      <div class="top-actions">
+        <div class="chat">
+          <span class="dots">···</span>
+        </div>
+        <img class="avatar" src="pic.jpg" alt="Nikhil profile">
+      </div>
+    </header>
+
+    <!-- Search Section -->
+    <div class="search">
+      <span class="search-icon"></span>
+      Search buddies, events, activities, circles...
+    </div>
+
+    <!-- Category Chips -->
+    <nav class="chips">
+      <button class="chip active">All</button>
+      <button class="chip">Near You</button>
+      <button class="chip">Events</button>
+      <button class="chip">Activities</button>
+      <button class="chip">Circles</button>
+      <button class="chip">Buddies</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Real People.<br>Real Connections.</h2>
+      <p>Find your people. Join events.<br>Make memories.</p>
+      <button class="cta">Explore Now <span>→</span></button>
+      <div class="people">
+        <img class="person p1" src="null" alt="Community member">
+        <img class="person p2" src="null" alt="Community member">
+        <img class="person p3" src="null" alt="Community member">
+      </div>
+      <div class="joined">🔥 250+ people joined today</div>
+    </section>
+
+    <!-- Pagination Dots -->
+    <div class="dots-row">
+      <span class="dot"></span>
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- Premium BeeGoss Pass and Profile Completion -->
+  <div class="promo-rail" aria-label="Personalized benefits">
+  <section class="pass-card" onclick="openPass()" role="button" tabindex="0" onkeydown="if (event.key === 'Enter' || event.key === ' ') openPass()">
+
+  <div class="pass-top">
+
+    <div class="pass-label">
+      <div class="pass-icon">🎟</div>
+      <span>BEEGOSS PASS</span>
+    </div>
+
+    <div class="pass-free">
+      FREE FOR YOU
+    </div>
+
+  </div>
+
+  <div class="pass-content">
+
+    <div class="pass-title">
+      Your Pass. Your Perks.
+    </div>
+
+    <div class="pass-subtitle">
+      PVR • Cafés • Clubs • 20+ premium brands
+    </div>
+
+  </div>
+
+  <div class="pass-bottom">
+
+
+
+    <button
+      class="pass-cta"
+      onclick="event.stopPropagation(); openPass()">
+      VIEW PASS →
+    </button>
+
+  </div>
+
+</section>
+
+<article class="profile-card">
+  <div class="profile-top">
+    <span class="profile-label">PROFILE BOOST</span>
+  </div>
+
+  <div class="profile-avatar" aria-label="Profile is 72 percent complete">
+    <img src="pic.jpg" alt="Your profile photo">
+    <span class="profile-avatar-badge">72%</span>
+  </div>
+
+  <div class="profile-copy">
+    <strong>Be easier to find.</strong>
+    <span>Add a few more details to make your profile feel complete and boost your visibility.</span>
+  </div>
+
+  <div class="profile-progress" role="progressbar" aria-label="Profile completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
+    <span></span>
+  </div>
+
+  <div class="profile-bottom">
+    <span class="profile-next">Takes about 3 min</span>
+    <button class="profile-cta" type="button">Complete profile →</button>
+  </div>
+</article>
+</div>
+
+
+<!-- ============================================
+     PREMIUM BEEGOSS PASS SCREEN
+     ============================================ -->
+
+<div class="pass-screen" id="passScreen">
+
+  <div class="pass-screen-inner">
+
+    <!-- Header -->
+    <header class="pass-header">
+      <button class="pass-back" onclick="closePass()">←</button>
+
+      <div class="pass-header-title">
+        <small>BEEGOSS</small>
+        <strong>Pass</strong>
+      </div>
+
+      <button class="pass-more">•••</button>
+    </header>
+
+
+    <!-- PREMIUM DIGITAL PASS -->
+    <section class="premium-pass">
+
+      <div class="premium-pass-glow"></div>
+
+      <div class="premium-pass-top">
+        <div class="brand-mark">✦</div>
+
+        <div class="brand-name">
+          BEEGOSS
+        </div>
+
+        <div class="active-pill">
+          ACTIVE
+        </div>
+      </div>
+
+
+      <div class="premium-pass-center">
+        <span class="pass-type">MEMBERSHIP PASS</span>
+
+        <h1>
+          BeeGoss
+          <span>Pass</span>
+        </h1>
+      </div>
+
+
+      <div class="premium-pass-footer">
+
+        <div>
+          <span>VALID UNTIL</span>
+          <strong>45 DAYS</strong>
+        </div>
+
+        <div class="member-id">
+          <span>MEMBER</span>
+          <strong>BG • 06 • 2026</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+
+      <div class="benefits-header">
+        <div>
+          <span>MEMBER BENEFITS</span>
+          <h2>Unlock more.</h2>
+        </div>
+
+        <div class="benefits-count">
+          06
+        </div>
+      </div>
+
+
+      <div class="benefit-list">
+
+        <article class="benefit-card">
+          <div class="benefit-icon pvr">PVR</div>
+
+          <div class="benefit-info">
+            <strong>Movie Benefits</strong>
+            <span>Special member offer</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon cafe">☕</div>
+
+          <div class="benefit-info">
+            <strong>Café Benefits</strong>
+            <span>Exclusive member offer</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon club">✦</div>
+
+          <div class="benefit-info">
+            <strong>Club Benefits</strong>
+            <span>Special access</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+
+        <article class="benefit-card">
+          <div class="benefit-icon more">+</div>
+
+          <div class="benefit-info">
+            <strong>20+ More Brands</strong>
+            <span>Explore all benefits</span>
+          </div>
+
+          <div class="benefit-arrow">→</div>
+        </article>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- Bottom CTA -->
+  <button class="pass-use-button" onclick="usePass()">
+    USE MY PASS
+    <span>→</span>
+  </button>
+
+</div>
+
+
+
+
+
+    <!-- Invite New Users Section -->
+<section class="section">
+  <div class="section-head">
+    <h3>Invite New Users for Activities</h3>
+    <span class="view">View all →</span>
+  </div>
+
+  <div class="buddy-row">
+    <article class="buddy">
+      <div class="avatar avatar-purple">V</div>
+      <strong>Vaibhav</strong>
+      <em>28M</em>
+      <button class="invite">Invite as Buddy</button>
+    </article>
+
+    <article class="buddy">
+      <div class="avatar avatar-blue">I</div>
+      <strong>Indushekhar</strong>
+      <em>22M</em>
+      <button class="invite">Invite as Buddy</button>
+    </article>
+
+    <article class="buddy">
+      <div class="avatar avatar-green">Y</div>
+      <strong>Yogesh</strong>
+      <em>27M</em>
+      <button class="invite">Invite as Buddy</button>
+    </article>
+
+    <article class="buddy">
+      <div class="avatar avatar-orange">S</div>
+      <strong>Sagar</strong>
+      <em>38M</em>
+      <button class="invite">Invite as Buddy</button>
+    </article>
+  </div>
+</section>
+
+    <!-- Upcoming Events Section -->
+    <section class="section">
+      <div class="section-head">
+        <h3>Upcoming Events</h3>
+        <span class="view">View all →</span>
+      </div>
+      <div class="event-row">
+        <article class="event-card">
+          <img src="20260903_171206.jpg" alt="Rajasthan event">
+          <div class="event-copy">
+            <strong>Rajasthan 2026</strong>
+            <small>Explore something new with your people</small>
+          </div>
+        </article>
+        <article class="event-card">
+          <img src="pic.jpg" alt="Community event">
+          <div class="event-copy">
+            <strong>Weekend gathering</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation 
+  <nav class="bottom">
+    <div class="nav active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
+      </svg>
+      <span>Home</span>
+    </div>
+    <div class="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 5h16v14H4zM7 2v6m10-6v6M7 12h3m4 0h3m-10 4h3m4 0h3"/>
+      </svg>
+      <span>Events</span>
+    </div>
+    <div class="nav featured">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="8" cy="17" r="3"/>
+        <circle cx="18" cy="17" r="3"/>
+        <path d="M5 17h-2l2-7h7l3 7M9 10l2-4h4l2 4M11 14h7"/>
+      </svg>
+      <span>Activities</span>
+    </div>
+    <div class="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="8"/>
+        <circle cx="12" cy="12" r="10"/>
+      </svg>
+      <span>Circle</span>
+    </div>
+    <div class="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="4" y="5" width="16" height="16" rx="2"/>
+        <path d="M8 2v6m8-6v6M4 10h16M9 15h2m2 0h2"/>
+      </svg>
+      <span>My Plans</span>
+    </div>
+  </nav>-->
+  <script>
+  function openPass() {
+    document.getElementById("passScreen").classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePass() {
+    document.getElementById("passScreen").classList.remove("show");
+    document.body.style.overflow = "";
+  }
+
+  function usePass() {
+    alert("Your BeeGoss benefits are ready!");
+  }
+</script>
+
+
+</body>
+</html>
