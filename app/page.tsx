@@ -36,8 +36,8 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-[#f8f7f5] text-[#171518]">
-      <section className="relative mx-auto max-w-[922px] overflow-hidden bg-[#f8f7f5] shadow-2xl">
-        <div className="relative h-[710px] overflow-hidden bg-[#665d58] sm:h-[760px]">
+      <section className="profile-shell relative mx-auto w-full max-w-[922px] overflow-hidden bg-[#f8f7f5] shadow-2xl">
+        <div className="hero relative h-[610px] overflow-hidden bg-[#665d58] sm:h-[760px]">
           <img
             src={profileImage}
             alt="Sanjeev wearing glasses and a grey blazer"
