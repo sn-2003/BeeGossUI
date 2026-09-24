@@ -572,16 +572,32 @@
 
 .profile-bottom {
   margin-top: 11px;
+  gap: 8px;
 }
 
 .profile-next {
   color: #66736f;
   font-size: 10px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .profile-cta {
   background: #146b5c;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .profile-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profile-cta {
+    width: 100%;
+    padding: 10px 12px;
+  }
 }
 
  /* ============================================
@@ -1560,7 +1576,7 @@
         <div class="chat">
           <span class="dots">···</span>
         </div>
-        <img class="avatar" src="/pic.jpg" alt="Nikhil profile">
+        <img class="avatar" src="pic.jpg" alt="Nikhil profile">
       </div>
     </header>
 
@@ -1647,11 +1663,10 @@
 <article class="profile-card">
   <div class="profile-top">
     <span class="profile-label">PROFILE BOOST</span>
-    <span class="profile-percent">72% complete</span>
   </div>
 
   <div class="profile-avatar" aria-label="Profile is 72 percent complete">
-    <img src="/pic.jpg" alt="Your profile photo">
+    <img src="pic.jpg" alt="Your profile photo">
     <span class="profile-avatar-badge">72%</span>
   </div>
 
@@ -1665,7 +1680,7 @@
   </div>
 
   <div class="profile-bottom">
-    <span class="profile-next">3 details left · takes about 3 min</span>
+    <span class="profile-next">Takes about 3 min</span>
     <button class="profile-cta" type="button">Complete profile →</button>
   </div>
 </article>
@@ -1867,14 +1882,14 @@
       </div>
       <div class="event-row">
         <article class="event-card">
-          <img src="/20260903_171206.jpg" alt="Rajasthan event">
+          <img src="20260903_171206.jpg" alt="Rajasthan event">
           <div class="event-copy">
             <strong>Rajasthan 2026</strong>
             <small>Explore something new with your people</small>
           </div>
         </article>
         <article class="event-card">
-          <img src="/pic.jpg" alt="Community event">
+          <img src="pic.jpg" alt="Community event">
           <div class="event-copy">
             <strong>Weekend gathering</strong>
           </div>
