@@ -280,8 +280,8 @@ export default function Page() {
         <div className="text-xl font-bold">
           <span className="font-black">findbuddy</span>
           <div className="text-xs tracking-widest font-semibold">
-            {activeTab === 'activities' 
-              ? (activityView === 'feed' ? 'DISCOVER' : 'USER ACTIVITIES') 
+            {activeTab === 'activities'
+              ? (activityView === 'feed' ? 'DISCOVER' : 'USER ACTIVITIES')
               : 'PEOPLE'}
           </div>
         </div>
@@ -297,6 +297,18 @@ export default function Page() {
 
       {/* Tabs */}
       <div className="flex border-b border-gray-200">
+        <a
+          href={`${basePath}/home-replica.html`}
+          className="flex-1 border-b-2 border-transparent px-4 py-3 text-center font-semibold text-gray-400"
+        >
+          Home
+        </a>
+        <a
+          href={`${basePath}/profile-replica/`}
+          className="flex-1 border-b-2 border-transparent px-4 py-3 text-center font-semibold text-gray-400"
+        >
+          Profile
+        </a>
         <button 
           onClick={() => setActiveTab('activities')}
           className={`flex-1 px-4 py-3 font-semibold border-b-2 ${
