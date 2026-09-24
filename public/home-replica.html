@@ -312,6 +312,8 @@
 
 .pass-card {
   min-height: 132px;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   border: 1.5px solid #171717;
   border-radius: 18px;
   padding: 16px 18px;
@@ -393,6 +395,193 @@
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.4px;
+}
+
+.promo-rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 2px 1px 12px;
+  margin: 0 -1px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.promo-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.pass-content {
+  position: relative;
+  z-index: 2;
+  margin: 13px 0 12px;
+}
+
+.pass-title {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+
+.pass-subtitle {
+  margin-top: 4px;
+  color: #777;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.pass-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.pass-cta,
+.profile-cta {
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 13px;
+  background: #090909;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+}
+
+.profile-card {
+  flex: 0 0 100%;
+  min-height: 132px;
+  scroll-snap-align: start;
+  border: 1.5px solid #b9dfd4;
+  border-radius: 18px;
+  padding: 16px 116px 16px 18px;
+  background: linear-gradient(135deg, #effff9 0%, #ffffff 62%, #fff7d9 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 86, 70, 0.08);
+}
+
+.profile-card::after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  right: -48px;
+  top: -64px;
+  border-radius: 50%;
+  background: rgba(245, 214, 121, 0.32);
+}
+
+.profile-top,
+.profile-copy,
+.profile-progress,
+.profile-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-top,
+.profile-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-label {
+  color: #146b5c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+}
+
+.profile-percent {
+  color: #146b5c;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.profile-avatar {
+  position: absolute;
+  top: 39px;
+  right: 17px;
+  width: 82px;
+  height: 82px;
+  padding: 4px;
+  border-radius: 50%;
+  background: conic-gradient(#146b5c 0 72%, #d9eee8 72% 100%);
+  z-index: 3;
+}
+
+.profile-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-avatar-badge {
+  position: absolute;
+  right: -5px;
+  bottom: 1px;
+  padding: 4px 7px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background: #146b5c;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.profile-copy {
+  margin: 11px 0 10px;
+}
+
+.profile-copy strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+
+.profile-copy span {
+  display: block;
+  max-width: 270px;
+  margin-top: 3px;
+  color: #66736f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-progress {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #d9eee8;
+}
+
+.profile-progress span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: #146b5c;
+}
+
+.profile-bottom {
+  margin-top: 11px;
+}
+
+.profile-next {
+  color: #66736f;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.profile-cta {
+  background: #146b5c;
 }
 
  /* ============================================
@@ -1412,8 +1601,9 @@
       <span class="dot"></span>
     </div>
 
-    <!-- Premium BeeGoss Pass -->
-<section class="pass-card" onclick="openPass()">
+    <!-- Premium BeeGoss Pass and Profile Completion -->
+  <div class="promo-rail" aria-label="Personalized benefits">
+  <section class="pass-card" onclick="openPass()" role="button" tabindex="0" onkeydown="if (event.key === 'Enter' || event.key === ' ') openPass()">
 
   <div class="pass-top">
 
@@ -1453,6 +1643,33 @@
   </div>
 
 </section>
+
+<article class="profile-card">
+  <div class="profile-top">
+    <span class="profile-label">PROFILE BOOST</span>
+    <span class="profile-percent">72% complete</span>
+  </div>
+
+  <div class="profile-avatar" aria-label="Profile is 72 percent complete">
+    <img src="/pic.jpg" alt="Your profile photo">
+    <span class="profile-avatar-badge">72%</span>
+  </div>
+
+  <div class="profile-copy">
+    <strong>Be easier to find.</strong>
+    <span>Add a few more details to make your profile feel complete and attract better matches.</span>
+  </div>
+
+  <div class="profile-progress" role="progressbar" aria-label="Profile completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
+    <span></span>
+  </div>
+
+  <div class="profile-bottom">
+    <span class="profile-next">3 details left · takes about 3 min</span>
+    <button class="profile-cta" type="button">Complete profile →</button>
+  </div>
+</article>
+</div>
 
 
 <!-- ============================================
